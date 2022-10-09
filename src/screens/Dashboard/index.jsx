@@ -1,7 +1,8 @@
 import React from "react";
+import { Header } from "../../components/Header/index.jsx";
 
 function Dashboard() {
-  return <div>Dashboard</div>;
+  return <Header />;
 }
 
 export default Dashboard;
