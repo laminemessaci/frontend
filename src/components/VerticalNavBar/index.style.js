@@ -26,7 +26,7 @@ const Copyright = styled.p`
   display: flex;
   align-items: center;
   padding: 3rem 0;
-  font-size: 0.8rem;
+  font-size: ${theme.fonts.medium};
   writing-mode: vertical-lr;
   transform: rotate(180deg);
 

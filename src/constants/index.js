@@ -14,6 +14,11 @@ export const theme = {
     neutral800: "#2b2d30",
     neutral900: "#020203",
   },
+  fonts: {
+    small: "0.4rem",
+    medium: "0.8rem",
+    large: "1.5rem",
+  },
 };
 
 export const icons = {

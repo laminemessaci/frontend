@@ -28,7 +28,7 @@ export const LinkedList = styled.ul`
 export const HeaderLink = styled.a`
   padding: 0.5rem 2rem;
   color: white;
-  font-size: 1.5rem;
+  font-size: ${theme.fonts.large};
   text-decoration: none;
 
   @media (max-width: 1340px) {
