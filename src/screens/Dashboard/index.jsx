@@ -1,9 +1,14 @@
 import React from "react";
 import { Header } from "../../components/Header/index.jsx";
+import VerticalNavBar from "../../components/VerticalNavBar/index.jsx";
 
 function Dashboard() {
-  console.log("dashboard page");
-  return <Header />;
+  return (
+    <>
+      <Header />
+      <VerticalNavBar />
+    </>
+  );
 }
 
 export default Dashboard;

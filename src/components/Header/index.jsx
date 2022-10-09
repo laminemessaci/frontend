@@ -1,4 +1,4 @@
-import SportSeeLogo from "../../assets/logo.svg";
+import { icons } from "../../constants/index.js";
 import {
   HeaderContainer,
   HeaderLink,
@@ -10,7 +10,7 @@ export function Header() {
   return (
     <HeaderContainer>
       <Logo href="/">
-        <img src={SportSeeLogo} alt="SportSee" />
+        <img src={icons.SportSeeLogo} alt="SportSee" />
       </Logo>
 
       <nav>
