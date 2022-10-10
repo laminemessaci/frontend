@@ -13,7 +13,7 @@ function IconComponent({ type, value, ...props }) {
       <img src={icons_type_infos[type]} alt={type} width="60" height="60" />
 
       <IconInfos>
-        <IconInfoValue>${icons_unit_infos[type]}</IconInfoValue>
+        <IconInfoValue>{`${value} ${icons_unit_infos[type]}`}</IconInfoValue>
 
         <IconInfoType>{type}</IconInfoType>
       </IconInfos>
