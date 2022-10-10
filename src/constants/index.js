@@ -4,6 +4,11 @@ import Cycling from "../assets/cycling.png";
 import bodybuilding from "../assets/bodybuilding.png";
 import SportSeeLogo from "../assets/logo.svg";
 
+import calorieIcon from "../assets/icon-calorie.png";
+import carbohydrateIcon from "../assets/icon-carbohydrate.png";
+import lipidIcon from "../assets/icon-lipid.png";
+import proteinIcon from "../assets/icon-protein.png";
+
 export const theme = {
   colors: {
     primary500: "#ff0101",
@@ -27,4 +32,18 @@ export const icons = {
   Meditation,
   Swimming,
   SportSeeLogo,
+};
+
+export const icons_type_infos = {
+  Calories: calorieIcon,
+  Glucides: carbohydrateIcon,
+  Protéines: proteinIcon,
+  Lipides: lipidIcon,
+};
+
+export const icons_unit_infos = {
+  Calories: "kCal",
+  Glucides: "g",
+  Protéines: "g",
+  Lipides: "g",
 };
