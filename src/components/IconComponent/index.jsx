@@ -7,7 +7,14 @@ import {
   IconInfoValue,
 } from "./index.styles.js";
 
-function IconComponent({ type, value, ...props }) {
+/**
+ **Macronutrient
+ * @param   {string}  type   type of nutriment
+ * @param   {[type]}  value  value of nutriment
+ *
+ * @return {JSX.Element}
+ */
+function IconComponent({ type, value }) {
   return (
     <IconContainer>
       <img src={icons_type_infos[type]} alt={type} width="60" height="60" />
