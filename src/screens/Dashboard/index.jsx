@@ -4,6 +4,7 @@ import { AverageSessionsChart } from "../../components/AverageSessions/index.js"
 import DailyActivity from "../../components/DailyActivity/index.jsx";
 import { Header } from "../../components/Header";
 import Macros from "../../components/Macros";
+import Score from "../../components/Score/index.js";
 import VerticalNavBar from "../../components/VerticalNavBar";
 import {
   ChartsGrid,
@@ -40,6 +41,7 @@ function Dashboard() {
                 <DailyActivity userId={"12"} />
               </MainChart>
               <AverageSessionsChart userId={"12"} />
+              <Score userId={"12"} />
             </ChartsGrid>
             <Macros userId="12" />
           </ContentGrid>
