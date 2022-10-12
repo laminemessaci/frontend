@@ -1,10 +1,10 @@
 import React from "react";
-import { useTheme } from "styled-components";
-import { AverageSessionsChart } from "../../components/AverageSessions/index.js";
-import DailyActivity from "../../components/DailyActivity/index.jsx";
+import { AverageSessionsChart } from "../../components/AverageSessions";
+import DailyActivity from "../../components/DailyActivity";
 import { Header } from "../../components/Header";
 import Macros from "../../components/Macros";
-import Score from "../../components/Score/index.js";
+import RadarActivities from "../../components/Radar/index.jsx";
+import Score from "../../components/Score";
 import VerticalNavBar from "../../components/VerticalNavBar";
 import {
   ChartsGrid,
@@ -41,6 +41,7 @@ function Dashboard() {
                 <DailyActivity userId={"12"} />
               </MainChart>
               <AverageSessionsChart userId={"12"} />
+              <RadarActivities userId="12" />
               <Score userId={"12"} />
             </ChartsGrid>
             <Macros userId="12" />

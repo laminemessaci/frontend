@@ -12,7 +12,11 @@ import { theme } from "../../constants";
 function Score({ userId }) {
   const pieData = [
     { name: "completed", value: 0.12, fillColor: `${theme.colors.primary500}` },
-    { name: "not-completed", value: 1 - 0.12, fillColor: "transparent" },
+    {
+      name: "not-completed",
+      value: 1 - 0.12,
+      fillColor: `${theme.colors.transparent}`,
+    },
   ];
 
   return (
@@ -26,7 +30,7 @@ function Score({ userId }) {
             dataKey="value"
             innerRadius={70}
             outerRadius={80}
-            startAngle={60}
+            startAngle={90}
             endAngle={450}
           >
             {pieData.map((entry, index) => (
