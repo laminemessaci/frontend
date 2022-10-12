@@ -1,17 +1,25 @@
 import React from "react";
+import { useTheme } from "styled-components";
+import DailyActivity, {
+  DailyActivityChart,
+} from "../../components/DailyActivity/index.jsx";
 import { Header } from "../../components/Header/index.jsx";
-import IconComponent from "../../components/IconComponent/index.jsx";
 import Macros from "../../components/Macros/index.jsx";
 import VerticalNavBar from "../../components/VerticalNavBar/index.jsx";
 import {
+  ChartsGrid,
+  ContentGrid,
   DashboardContainer,
   FirstName,
+  MainChart,
   MainContent,
   Message,
   Title,
 } from "./index.style.js";
 
 function Dashboard() {
+  const theme = useTheme();
+  console.log(theme);
   return (
     <>
       <Header />
@@ -26,13 +34,19 @@ function Dashboard() {
               Félicitations ! Vous avez explosé vos objectifs hier !&nbsp;👏
             </span>
           </Message>
-          <Macros userId="1123" />
+
+          <ContentGrid>
+            <ChartsGrid>
+              <MainChart>
+                <DailyActivity userId={"12"} />
+              </MainChart>
+            </ChartsGrid>
+            <Macros userId="12" />
+          </ContentGrid>
         </MainContent>
       </DashboardContainer>
     </>
   );
 }
-
-
 
 export default Dashboard;
