@@ -22,7 +22,7 @@ import { USER_ACTIVITY } from "../../mock/mockedData.js";
 
 function DailyActivity({ userId }) {
   let dailyActivity = USER_ACTIVITY[0].sessions;
-  console.log(dailyActivity);
+  // console.log(dailyActivity);
 
   return (
     <DailyActivityContainer>

@@ -15,9 +15,9 @@ import {
 } from "./index.styles.js";
 import { USER_AVERAGE_SESSIONS } from "../../mock/mockedData.js";
 
-export function AverageSessionsChart({ userId }) {
+export function AverageSessionsChart({ sessions, ...props }) {
   let averageSessions = USER_AVERAGE_SESSIONS[1].sessions;
-  console.log(averageSessions);
+  console.log("sessions::", sessions);
 
   return (
     <AverageSessionsContainer>
@@ -29,7 +29,7 @@ export function AverageSessionsChart({ userId }) {
 
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
-          data={averageSessions}
+          data={sessions}
           outerRadius="75%"
           margin={{ top: 0, right: 12, bottom: 24, left: 12 }}
         >
@@ -51,7 +51,7 @@ export function AverageSessionsChart({ userId }) {
           />
           <Line
             dataKey="sessionLength"
-            type={`${userId === "18" ? "step" : "monotone"}`}
+            // type={`${userId === "18" ? "step" : "monotone"}`}
             stroke="rgba(255, 255, 255, 0.6)"
             strokeWidth={2}
             dot={false}
@@ -75,7 +75,7 @@ export function AverageSessionsChart({ userId }) {
 }
 
 AverageSessionsChart.propTypes = {
-  userId: PropTypes.string.isRequired,
+  // userId: PropTypes.string.isRequired,
 };
 
 function CustomTooltip({ active, payload }) {

@@ -11,29 +11,20 @@ import { USER_ACTIVITY, USER_PERFORMANCE } from "../../mock/mockedData.js";
 import { theme } from "../../constants";
 
 import { RadarContainer } from "./index.styles.js";
+import { formatData } from "../../utils";
+import { Activity } from "../../model/Activity.js";
+import { useParams } from "react-router";
 
-function RadarActivities(userId) {
-  let activities = USER_PERFORMANCE[0].data;
-  console.log("activities", activities);
+function RadarActivities({ perf, ...props }) {
+  const params = useParams();
 
-  const formatedctivities = [];
+  const activities = new Activity(parseInt(params.userId)).getActivitiesById();
 
-  // activitie_radar.map((activity, key) => {
-  //   console.log(activity, key);
-  // });
-
-  activities.forEach((activitie, key) => {
-    formatedctivities.push({
-      value: activitie.value,
-      activity: activitie_radar[key],
-    });
-  });
-  console.log("formated: ", formatedctivities);
   return (
     <RadarContainer>
       <ResponsiveContainer width="100%" height="100%">
         <RadarChart
-          data={formatedctivities}
+          data={activities}
           outerRadius={window.innerWidth > 1340 ? "70%" : "60%"}
         >
           <PolarGrid radialLines={false} />
@@ -59,7 +50,7 @@ function RadarActivities(userId) {
   );
 }
 
-Radar.propTypes = {
+RadarActivities.propTypes = {
   userId: PropTypes.string.isRequired,
 };
 
