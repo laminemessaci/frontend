@@ -5,8 +5,10 @@ import DailyActivity from "../../components/DailyActivity";
 import { Header } from "../../components/Header";
 import Macros from "../../components/Macros";
 import RadarActivities from "../../components/RadarActivities/index.jsx";
-import Score from "../../components/Score";
+import Score from "../../components/ScoreUser";
+import UserMessage from "../../components/UserMessage/index.js";
 import VerticalNavBar from "../../components/VerticalNavBar";
+import { user_message } from "../../constants/index.js";
 import { Activity } from "../../model/Activity.js";
 import Average from "../../model/Average.js";
 import Perf from "../../model/Perf.js";
@@ -38,15 +40,6 @@ function Dashboard() {
   async function getMockeData() {
     try {
       const userDatas = await getAllDatasMocked();
-
-      // const user = new User(userDatas.user.data);
-      console.log("userData: ", userDatas.perf);
-
-      // const perf = new Activity(12, userDatas?.perf).getActivitiesById();
-
-      // console.log("perf==>", perfor);
-      // const average = new Average(userDatas.average);
-      // const session = new Session(userDatas.session);
 
       setState({
         ...state,
@@ -89,23 +82,15 @@ function Dashboard() {
         <DashboardContainer>
           <VerticalNavBar />
           <MainContent>
-            <Title>
-              Bonjour <FirstName>Lamine</FirstName>
-            </Title>
-            <Message>
-              <span>
-                Félicitations ! Vous avez explosé vos objectifs hier !&nbsp;👏
-              </span>
-            </Message>
-
+            <UserMessage message={user_message} />
             <ContentGrid>
               <ChartsGrid>
                 <MainChart>
                   <DailyActivity userId={"12"} />
                 </MainChart>
                 <AverageSessionsChart sessions={data?.average?.sessions} />
-                <RadarActivities userId={"18"} perf={data.perf} />
-                <Score userId={"12"} />
+                <RadarActivities userId={"18"} perf={data?.perf} />
+                <Score todayScore={data?.user?.todayScore} />
               </ChartsGrid>
               <Macros userId="12" />
             </ContentGrid>

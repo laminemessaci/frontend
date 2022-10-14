@@ -15,16 +15,15 @@ import { formatData } from "../../utils";
 import { Activity } from "../../model/Activity.js";
 import { useParams } from "react-router";
 
-function RadarActivities({ perf, ...props }) {
+function RadarActivities() {
   const params = useParams();
-
-  const activities = new Activity(parseInt(params.userId)).getActivitiesById();
+  const performances = new Activity(parseInt(params.userId)).getActivities();
 
   return (
     <RadarContainer>
       <ResponsiveContainer width="100%" height="100%">
         <RadarChart
-          data={activities}
+          data={performances}
           outerRadius={window.innerWidth > 1340 ? "70%" : "60%"}
         >
           <PolarGrid radialLines={false} />

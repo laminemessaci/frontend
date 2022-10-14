@@ -7,14 +7,16 @@ import {
   ScoreTitle,
   ScoreValue,
 } from "./index.styles.js";
+import { Score } from "../../model/Score.js";
 import { theme } from "../../constants";
 
-function Score({ userId }) {
-  const pieData = [
-    { name: "completed", value: 0.12, fillColor: `${theme.colors.primary500}` },
+function ScoreUser({ todayScore }) {
+  const scoreData = new Score(todayScore);
+  const data = [
+    { name: "completed", value: scoreData._score, fillColor: scoreData.fill },
     {
       name: "not-completed",
-      value: 1 - 0.12,
+      value: 1 - scoreData._score,
       fillColor: `${theme.colors.transparent}`,
     },
   ];
@@ -26,14 +28,14 @@ function Score({ userId }) {
       <ResponsiveContainer width="100%" height="100%">
         <PieChart width={160} height={160}>
           <Pie
-            data={pieData}
+            data={data}
             dataKey="value"
-            innerRadius={70}
+            innerRadius={67}
             outerRadius={80}
             startAngle={90}
             endAngle={450}
           >
-            {pieData.map((entry, index) => (
+            {data.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
                 fill={entry.fillColor}
@@ -45,7 +47,7 @@ function Score({ userId }) {
       </ResponsiveContainer>
 
       <ScoreLabel>
-        <ScoreValue>{`${100 * 0.12}%`}</ScoreValue>
+        <ScoreValue>{scoreData._score}</ScoreValue>
         <br />
         de votre
         <br />
@@ -55,7 +57,7 @@ function Score({ userId }) {
   );
 }
 
-Score.propTypes = {
-  userId: PropTypes.string.isRequired,
+ScoreUser.propTypes = {
+  todayScore: PropTypes.number.isRequired,
 };
-export default Score;
+export default ScoreUser;

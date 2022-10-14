@@ -57,3 +57,6 @@ export const activitie_radar = {
   5: "Energie",
   6: "Cardio",
 };
+
+export const user_message =
+  "Félicitations ! Vous avez explosé vos objectifs hier!&nbsp;👏";

@@ -6,9 +6,8 @@ export class Activity {
     this.userId = userId;
   }
 
-  getActivitiesById() {
+  getActivities() {
     const activities = [];
-
     for (let user of USER_PERFORMANCE) {
       if (user.userId === this.userId) {
         for (let item of user.data) {

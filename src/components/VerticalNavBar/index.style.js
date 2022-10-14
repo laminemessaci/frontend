@@ -6,6 +6,7 @@ const VerticalBarContainer = styled.div`
   grid-template-rows: 3fr 2fr;
   color: white;
   background: ${theme.colors.neutral900};
+
   @media (max-width: 1340px) {
     max-height: 692px;
   }
@@ -20,6 +21,9 @@ const Activities = styled.ul`
 
 const ActivityIcon = styled.img`
   padding: 0.5rem;
+  &:hover {
+    box-shadow: 0 0 25px #ccc;
+  }
 `;
 
 const Copyright = styled.p`
@@ -29,7 +33,9 @@ const Copyright = styled.p`
   font-size: ${theme.fonts.medium};
   writing-mode: vertical-lr;
   transform: rotate(180deg);
-
+  &:hover {
+    box-shadow: 0 0 8px #ccc;
+  }
   @media (max-width: 1340px) {
     padding: 2rem;
   }
