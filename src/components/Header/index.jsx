@@ -1,29 +1,34 @@
-import SportSeeLogo from "../../assets/logo.svg";
-import "./style.css";
+import { icons } from "../../constants/index.js";
+import {
+  HeaderContainer,
+  HeaderLink,
+  LinkedList,
+  Logo,
+} from "./index.styles.js";
 
 export function Header() {
   return (
-    <header>
-      <a href="/">
-        <img src={SportSeeLogo} alt="SportSee" />
-      </a>
+    <HeaderContainer>
+      <Logo href="/">
+        <img src={icons.SportSeeLogo} alt="SportSee" />
+      </Logo>
 
       <nav>
-        <ul>
+        <LinkedList>
           <li>
-            <a href="/">Accueil</a>
+            <HeaderLink href="/">Accueil</HeaderLink>
           </li>
           <li>
-            <a href="/">Profil</a>
+            <HeaderLink href="/">Profil</HeaderLink>
           </li>
           <li>
-            <a href="/">Réglages</a>
+            <HeaderLink href="/">Réglages</HeaderLink>
           </li>
           <li>
-            <a href="/">Communauté</a>
+            <HeaderLink href="/">Communauté</HeaderLink>
           </li>
-        </ul>
+        </LinkedList>
       </nav>
-    </header>
+    </HeaderContainer>
   );
 }
