@@ -15,6 +15,7 @@ import {
  * @return {JSX.Element}
  */
 function IconComponent({ type, value }) {
+  
   return (
     <IconContainer>
       <img src={icons_type_infos[type]} alt={type} width="60" height="60" />

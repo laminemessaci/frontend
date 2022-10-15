@@ -9,7 +9,6 @@ import {
 } from "./index.style.js";
 
 function VerticalNavBar() {
-  console.log(icons.Bodybuilding);
   return (
     <VerticalBarContainer>
       <nav>

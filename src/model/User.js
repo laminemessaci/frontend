@@ -1,18 +1,18 @@
-/**Constructor Pattern - User
- * @constructor
- * @param {object} data - user information
- */
-export class User {
-  constructor(data) {
-    this._firstname = data.userInfos.firstName;
-    this._keyData = data.keyData;
+import { USER_MAIN_DATA } from "./../mock/mockedData";
+class User {
+  constructor(id) {
+    this._id = id;
   }
-
-  get firstName() {
-    return this._firstname;
+  getId() {
+    return this._id;
   }
-
-  get keyData() {
-    return this._keyData;
+  getFirstName() {
+    for (let user of USER_MAIN_DATA) {
+      if (user.id == this._id) {
+        return user.userInfos.firstName;
+      }
+    }
+    return "test";
   }
 }
+export default User;

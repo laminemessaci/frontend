@@ -21,8 +21,8 @@ import CustomTooltip from "../CustomTooltip/index.js";
 import { USER_ACTIVITY } from "../../mock/mockedData.js";
 
 function DailyActivity({ userId }) {
-   let dailyActivity = USER_ACTIVITY[0].sessions;
-  console.log(dailyActivity);
+  let dailyActivity = USER_ACTIVITY[0].sessions;
+  // console.log(dailyActivity);
 
   return (
     <DailyActivityContainer>

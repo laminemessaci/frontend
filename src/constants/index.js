@@ -18,6 +18,7 @@ export const theme = {
     neutral500: "#74798c",
     neutral800: "#2b2d30",
     neutral900: "#020203",
+    transparent: "transparent",
   },
   fonts: {
     small: "0.4rem",
@@ -47,3 +48,15 @@ export const icons_unit_infos = {
   Protéines: "g",
   Lipides: "g",
 };
+
+export const activitie_radar = {
+  1: "Intensité",
+  2: "Vitesse",
+  3: "Force",
+  4: "Endurance",
+  5: "Energie",
+  6: "Cardio",
+};
+
+export const user_message =
+  "Félicitations ! Vous avez explosé vos objectifs hier!&nbsp;👏";

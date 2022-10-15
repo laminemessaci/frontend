@@ -1,10 +1,12 @@
+import { theme } from "../constants/index.js";
+
 /**Constructor Pattern - Score
  * @constructor
- * @param {object} data - A score
+ * @param {object} score - A score
  */
 export class Score {
-  constructor(data) {
-    this._score = data;
+  constructor(score) {
+    this._score = score;
   }
 
   get name() {
@@ -17,6 +19,6 @@ export class Score {
   }
 
   get fill() {
-    return "#FF0000";
+    return `${theme.colors.primary500}`;
   }
 }
