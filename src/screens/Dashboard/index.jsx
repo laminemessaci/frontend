@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from "react";
-import ReactLoading from "react-loading";
-import { AverageSessionsChart } from "../../components/AverageSessions";
-import DailyActivity from "../../components/DailyActivity";
-import { Header } from "../../components/Header";
-import Macros from "../../components/Macros";
-import RadarActivities from "../../components/RadarActivities/index.jsx";
-import Score from "../../components/ScoreUser";
-import UserMessage from "../../components/UserMessage/index.js";
-import VerticalNavBar from "../../components/VerticalNavBar";
-import { user_message } from "../../constants/index.js";
-import { Activity } from "../../model/Activity.js";
-import Average from "../../model/Average.js";
-import Perf from "../../model/Perf.js";
-import Session from "../../model/Session.js";
-import User from "../../model/User.js";
-import { getAllDatasMocked } from "../../services/mockedAPI/index.js";
-import { findPath } from "../../utils/index.js";
+import React, { useEffect, useState } from 'react';
+import ReactLoading from 'react-loading';
+import { AverageSessionsChart } from '../../components/AverageSessions';
+import DailyActivity from '../../components/DailyActivity';
+import { Header } from '../../components/Header';
+import Macros from '../../components/Macros';
+import RadarActivities from '../../components/RadarActivities/index.jsx';
+import Score from '../../components/ScoreUser';
+import UserMessage from '../../components/UserMessage/index.js';
+import VerticalNavBar from '../../components/VerticalNavBar';
+import { user_message } from '../../constants/index.js';
+import { Activity } from '../../model/Activity.js';
+import Average from '../../model/Average.js';
+import Perf from '../../model/Perf.js';
+import Session from '../../model/Session.js';
+import User from '../../model/User.js';
+import { getAllDatasMocked } from '../../services/mockedAPI/index.js';
+import { useParams } from 'react-router';
 import {
   ChartsGrid,
   ContentGrid,
@@ -25,7 +25,7 @@ import {
   MainContent,
   Message,
   Title,
-} from "./index.style.js";
+} from './index.style.js';
 const initialState = {
   isLoading: true,
   error: null,
@@ -37,38 +37,39 @@ const initialState = {
 function Dashboard() {
   const [state, setState] = useState(initialState);
 
-  async function getMockeData() {
-    try {
-      const userDatas = await getAllDatasMocked();
-
-      setState({
-        ...state,
-        data: userDatas,
-        isDataLoaded: true,
-        error: "",
-        isLoading: false,
-      });
-    } catch (error) {
-      setState({ ...state, error, isLoading: false });
-    }
-  }
+  const { userId } = useParams();
 
   const { isLoading, isDataLoaded, data } = state;
 
-  console.log("state: ", state);
+  console.log('state: ', state);
 
   useEffect(() => {
+    async function getMockeData() {
+      try {
+        const userDatas = await getAllDatasMocked();
+
+        setState({
+          ...state,
+          data: userDatas,
+          isDataLoaded: true,
+          error: '',
+          isLoading: false,
+        });
+      } catch (error) {
+        setState({ ...state, error, isLoading: false });
+      }
+    }
     getMockeData();
     setState({ ...state, isLoading: false });
-    console.log("state: ", state);
+    console.log('state: ', state);
   }, []);
 
   if (isLoading) {
     return (
       <>
         <ReactLoading
-          type={"spinningBubbles"}
-          color={"#ff6060"}
+          type={'spinningBubbles'}
+          color={'#ff6060'}
           width={200}
           height={200}
         />
@@ -86,13 +87,13 @@ function Dashboard() {
             <ContentGrid>
               <ChartsGrid>
                 <MainChart>
-                  <DailyActivity userId={"12"} />
+                  <DailyActivity userId={'12'} />
                 </MainChart>
                 <AverageSessionsChart sessions={data?.average?.sessions} />
-                <RadarActivities userId={"18"} perf={data?.perf} />
+                <RadarActivities userId={userId} perf={data?.perf} />
                 <Score todayScore={data?.user?.todayScore} />
               </ChartsGrid>
-              <Macros userId="12" />
+              <Macros userId={userId} data={data.user?.keyData} />
             </ContentGrid>
           </MainContent>
         </DashboardContainer>
