@@ -82,7 +82,7 @@ function Dashboard() {
         <DashboardContainer>
           <VerticalNavBar />
           <MainContent>
-            <UserMessage message={user_message} />
+            <UserMessage message={user_message} isLoading={isLoading} />
             <ContentGrid>
               <ChartsGrid>
                 <MainChart>
