@@ -21,13 +21,10 @@ import CustomTooltip from '../CustomTooltip/index.js';
 import { Activity } from '../../model/Activity.js';
 
 function DailyActivity({ userId, data }) {
-  // let dailyActivity = USER_ACTIVITY[0].sessions; // userActivities[0].sessions;
   const dailyActivity = new Activity(
     userId,
     data?.userActivities
   ).getActivities();
-  // console.log('activity: ', dailyActivity);
-  //const activity = new
 
   return (
     <DailyActivityContainer>
@@ -109,6 +106,7 @@ function DailyActivity({ userId, data }) {
 
 DailyActivity.propTypes = {
   userId: PropTypes.string.isRequired,
+  data: PropTypes.object.isRequired,
 };
 
 export default DailyActivity;

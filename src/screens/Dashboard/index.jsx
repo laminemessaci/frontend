@@ -35,7 +35,6 @@ const initialState = {
   error: null,
   isDataLoaded: false,
   data: null,
-  perf: null,
 };
 
 function Dashboard() {
