@@ -1,22 +1,52 @@
-import { activitie_radar } from "../constants/index.js";
-import { USER_PERFORMANCE } from "../mock/mockedData.js";
+import { activitie_radar } from '../constants/index.js';
+import { USER_PERFORMANCE } from '../mock/mockedData.js';
 
 export class Activity {
-  constructor(userId) {
-    this.userId = userId;
+  constructor(userId, data) {
+    this._userId = userId;
+    this._data = data;
+    console.log('ACTTTTTT: ', data);
+    this.getActivities();
   }
 
+  //   function getDailyActivity(userData) {
+  //   if (userData) {
+  //     const dailyActivity = [];
+
+  //     for (let item of userData) {
+  //       // eslint-disable-next-line no-unused-vars
+  //       const [yyyy, mm, dd] = item.day.split("-");
+
+  //       dailyActivity.push({
+  //         day: `${dd}/${mm}`,
+  //         kilogram: item.kilogram,
+  //         calories: item.calories,
+  //       });
+  //     }
+
+  //     return dailyActivity;
+  //   }
+
+  //   return getDefaultDailyActivity();
+  // }
+
   getActivities() {
-    const activities = [];
-    for (let user of USER_PERFORMANCE) {
-      if (user.userId === this.userId) {
-        for (let item of user.data) {
-          activities.push({
-            activity: activitie_radar[item.kind],
-            value: item.value,
+    const dailyActivity = [];
+    for (let user of this._data) {
+      if (user.userId === parseInt(this._userId)) {
+        // console.log('dans condition');
+        for (let item of user.sessions) {
+          console.log('item: ', item);
+          const [yyyy, mm, dd] = item.day.split('-');
+
+          dailyActivity.push({
+            day: `${dd}/${mm}`,
+            kilogram: item.kilogram,
+            calories: item.calories,
           });
         }
-        return activities;
+        console.log('dayly activities ::', dailyActivity);
+        return dailyActivity;
       }
     }
   }

@@ -14,7 +14,11 @@ import Average from '../../model/Average.js';
 import Perf from '../../model/Perf.js';
 import Session from '../../model/Session.js';
 import User from '../../model/User.js';
-import { getAllDatasMocked } from '../../services/mockedAPI/index.js';
+import {
+  getAllDataMocked,
+  getAllDatasMocked,
+  getDataByUserId,
+} from '../../services/mockedAPI/index.js';
 import { useParams } from 'react-router';
 import {
   ChartsGrid,
@@ -41,25 +45,42 @@ function Dashboard() {
 
   const { isLoading, isDataLoaded, data } = state;
 
-  console.log('state: ', state);
+  console.log('state: ', data);
+
+  async function getMockedData() {
+    try {
+      const userData = await getAllDataMocked();
+
+      setState({
+        ...state,
+        data: userData,
+        isDataLoaded: true,
+        error: '',
+        isLoading: false,
+      });
+    } catch (error) {
+      setState({ ...state, error, isLoading: false });
+    }
+  }
 
   useEffect(() => {
-    async function getMockeData() {
-      try {
-        const userDatas = await getAllDatasMocked();
+    getMockedData();
+    // async function getMockeData() {
+    //   try {
+    //     const userDatas = await getAllDatasMocked();
 
-        setState({
-          ...state,
-          data: userDatas,
-          isDataLoaded: true,
-          error: '',
-          isLoading: false,
-        });
-      } catch (error) {
-        setState({ ...state, error, isLoading: false });
-      }
-    }
-    getMockeData();
+    //     setState({
+    //       ...state,
+    //       data: userDatas,
+    //       isDataLoaded: true,
+    //       error: '',
+    //       isLoading: false,
+    //     });
+    //   } catch (error) {
+    //     setState({ ...state, error, isLoading: false });
+    //   }
+    // }
+    // getMockeData();
     setState({ ...state, isLoading: false });
     console.log('state: ', state);
   }, []);
@@ -87,13 +108,17 @@ function Dashboard() {
             <ContentGrid>
               <ChartsGrid>
                 <MainChart>
-                  <DailyActivity userId={'12'} />
+                  <DailyActivity userId={userId} data={data} />
                 </MainChart>
-                <AverageSessionsChart sessions={data?.average?.sessions} />
-                <RadarActivities userId={userId} perf={data?.perf} />
-                <Score todayScore={data?.user?.todayScore} />
+                {/* <AverageSessionsChart
+                  userId={userId}
+                  data={data?.average?.sessions}
+                /> */}
+
+                {/* <RadarActivities userId={userId} perf={data?.perf} /> */}
+                {/* <Score todayScore={data?.user?.todayScore} /> */}
               </ChartsGrid>
-              <Macros userId={userId} data={data.user?.keyData} />
+              <Macros userId={userId} data={data.userMainData} />
             </ContentGrid>
           </MainContent>
         </DashboardContainer>

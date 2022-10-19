@@ -63,25 +63,6 @@ function translateToFr(str) {
   return performances[str] || performances["default"];
 }
 
-// export function translateToFr(str) {
-//   switch (str) {
-//     case "energy":
-//       return "energie";
-//     case "strength":
-//       return "force";
-//     case "speed":
-//       return "vitesse";
-//     case "intensity":
-//       return "intensité";
-//     case "cardio":
-//       return "cardio";
-//     case "endurance":
-//       return "endurance";
-//     default:
-//       return "unknown";
-//   }
-// }
-
 export function capitalizesFirstLetter(str) {
   return str.charAt(0).toUpperCase() + str.substring(1).toLowerCase();
 }

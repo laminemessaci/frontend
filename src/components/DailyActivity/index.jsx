@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import {
   Bar,
   BarChart,
@@ -7,7 +7,7 @@ import {
   Tooltip,
   XAxis,
   YAxis,
-} from "recharts";
+} from 'recharts';
 
 import {
   ColorBullet,
@@ -15,14 +15,19 @@ import {
   DailyActivityLegend,
   DailyActivityTitle,
   LegendDetail,
-} from "./index.styles.js";
-import { theme } from "../../constants/index.js";
-import CustomTooltip from "../CustomTooltip/index.js";
-import { USER_ACTIVITY } from "../../mock/mockedData.js";
+} from './index.styles.js';
+import { theme } from '../../constants/index.js';
+import CustomTooltip from '../CustomTooltip/index.js';
+import { Activity } from '../../model/Activity.js';
 
-function DailyActivity({ userId }) {
-  let dailyActivity = USER_ACTIVITY[0].sessions;
-  // console.log(dailyActivity);
+function DailyActivity({ userId, data }) {
+  // let dailyActivity = USER_ACTIVITY[0].sessions; // userActivities[0].sessions;
+  const dailyActivity = new Activity(
+    userId,
+    data?.userActivities
+  ).getActivities();
+  // console.log('activity: ', dailyActivity);
+  //const activity = new
 
   return (
     <DailyActivityContainer>
@@ -62,7 +67,7 @@ function DailyActivity({ userId }) {
           <YAxis
             yAxisId="kg"
             dataKey="kilogram"
-            domain={["dataMin - 1", "dataMax + 2"]}
+            domain={['dataMin - 1', 'dataMax + 2']}
             allowDecimals={false}
             dx={48}
             orientation="right"
@@ -73,7 +78,7 @@ function DailyActivity({ userId }) {
           <YAxis
             yAxisId="cal"
             dataKey="calories"
-            domain={[0, "dataMax + 50"]}
+            domain={[0, 'dataMax + 50']}
             hide={true}
           />
           <Bar
@@ -93,7 +98,7 @@ function DailyActivity({ userId }) {
           <Tooltip
             content={<CustomTooltip />}
             cursor={{
-              fill: "rgba(0, 0, 0, 0.1)",
+              fill: 'rgba(0, 0, 0, 0.1)',
             }}
           />
         </BarChart>

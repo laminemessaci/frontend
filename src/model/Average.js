@@ -1,8 +1,10 @@
-import { Component } from "react";
-class Average extends Component {
-  constructor(data) {
-    super(data);
-    this.data = data.data;
+class Average {
+  constructor(userId, data) {
+    this._userId = userId;
+    this._data = data;
+  }
+  getSessions() {
+    return this._data?.sessions;
   }
 }
 export default Average;

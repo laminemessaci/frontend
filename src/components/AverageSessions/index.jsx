@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import {
   Line,
   LineChart,
@@ -6,18 +6,18 @@ import {
   Tooltip,
   XAxis,
   YAxis,
-} from "recharts";
+} from 'recharts';
+import { SessionsAverage } from '../../model/SessionsAverage.js';
 
 import {
   AverageSessionsContainer,
   AverageSessionsTitle,
   TooltipContainer,
-} from "./index.styles.js";
-import { USER_AVERAGE_SESSIONS } from "../../mock/mockedData.js";
+} from './index.styles.js';
 
-export function AverageSessionsChart({ sessions, ...props }) {
-  let averageSessions = USER_AVERAGE_SESSIONS[1].sessions;
-  console.log("sessions::", sessions);
+export function AverageSessionsChart({ userId, data }) {
+  const sessions = new SessionsAverage(userId, data).getFormatedData();
+  console.log('sessions: ', sessions);
 
   return (
     <AverageSessionsContainer>
@@ -46,7 +46,7 @@ export function AverageSessionsChart({ sessions, ...props }) {
           />
           <YAxis
             dataKey="sessionLength"
-            domain={[0, "dataMax + 60"]}
+            domain={[0, 'dataMax + 60']}
             hide={true}
           />
           <Line
@@ -56,7 +56,7 @@ export function AverageSessionsChart({ sessions, ...props }) {
             strokeWidth={2}
             dot={false}
             activeDot={{
-              stroke: "rgba(255,255,255, 0.6)",
+              stroke: 'rgba(255,255,255, 0.6)',
               strokeWidth: 10,
               r: 5,
             }}
@@ -64,7 +64,7 @@ export function AverageSessionsChart({ sessions, ...props }) {
           <Tooltip
             content={<CustomTooltip />}
             cursor={{
-              stroke: "rgba(0, 0, 0, 0.1)",
+              stroke: 'rgba(0, 0, 0, 0.1)',
               strokeWidth: 32,
             }}
           />
