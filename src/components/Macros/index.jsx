@@ -5,7 +5,7 @@ import User from '../../model/User.js';
 
 function Macros({ userId, data }) {
   // console.log(data);
-  const { nutriments, values } = new User(userId, data).getKeyData();
+  const { nutriments, values } = new User(userId, data)._keyData;
 
   return (
     <MacroContainer>

@@ -11,7 +11,7 @@ import { Score } from '../../model/Score.js';
 import { theme } from '../../constants';
 
 function ScoreUser({ userId, data }) {
-  const scoreData = new Score(userId, data); //userMainData[0].todayScore
+  const scoreData = new Score(userId, data);
   console.log(scoreData);
   const pieData = [
     { name: 'completed', value: scoreData.score, fillColor: scoreData.fill },

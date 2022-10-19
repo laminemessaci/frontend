@@ -18,13 +18,10 @@ import {
 } from './index.styles.js';
 import { theme } from '../../constants/index.js';
 import CustomTooltip from '../CustomTooltip/index.js';
-import { Activity } from '../../model/Activity.js';
+import { Activity } from '../../model/DailyActivity.js';
 
 function DailyActivity({ userId, data }) {
-  const dailyActivity = new Activity(
-    userId,
-    data?.userActivities
-  ).getActivities();
+  const dailyActivity = new Activity(userId, data?.userActivities)._activities;
 
   return (
     <DailyActivityContainer>

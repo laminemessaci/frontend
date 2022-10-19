@@ -3,10 +3,9 @@ import { useParams } from 'react-router';
 import User from '../../model/User.js';
 import { FirstName, Message, Title } from './index.styles.js';
 
-function UserMessage({ message, isLoading }) {
+function UserMessage({ userId, message, isLoading }) {
   const params = useParams();
-  const firstName =
-    new User(parseInt(params.userId)).getFirstName() || 'unknown user';
+  const firstName = new User(parseInt(userId))._firstName || 'unknown user';
   console.log('first Name:', firstName, isLoading);
   return (
     <>
@@ -14,7 +13,7 @@ function UserMessage({ message, isLoading }) {
         Bonjour <FirstName>{!isLoading && firstName}</FirstName>
       </Title>
       <Message>
-        <span>{!isLoading || (firstName === 'unknown user') ? message : ''}</span>
+        <span>{!isLoading || firstName === 'unknown user' ? message : ''}</span>
       </Message>
     </>
   );

@@ -1,5 +1,3 @@
-import { USER_AVERAGE_SESSIONS } from '../mock/mockedData.js';
-
 /**Constructor Pattern - Average session
  * @constructor
  * @param {object} data - A average session with a day
@@ -11,7 +9,7 @@ export class SessionsAverage {
     console.log('sessions  ' + data);
   }
 
-  getFormatedData() {
+  get _sessions() {
     let sessions = [];
     const days = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
 

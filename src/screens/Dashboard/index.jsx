@@ -9,26 +9,14 @@ import Score from '../../components/ScoreUser';
 import UserMessage from '../../components/UserMessage/index.js';
 import VerticalNavBar from '../../components/VerticalNavBar';
 import { user_message } from '../../constants/index.js';
-import { Activity } from '../../model/Activity.js';
-import Average from '../../model/Average.js';
-import Perf from '../../model/Perf.js';
-import Session from '../../model/Session.js';
-import User from '../../model/User.js';
-import {
-  getAllDataMocked,
-  getAllDatasMocked,
-  getDataByUserId,
-} from '../../services/mockedAPI/index.js';
+import { getAllDataMocked } from '../../services/mockedAPI/index.js';
 import { useParams } from 'react-router';
 import {
   ChartsGrid,
   ContentGrid,
   DashboardContainer,
-  FirstName,
   MainChart,
   MainContent,
-  Message,
-  Title,
 } from './index.style.js';
 const initialState = {
   isLoading: true,
@@ -103,7 +91,11 @@ function Dashboard() {
         <DashboardContainer>
           <VerticalNavBar />
           <MainContent>
-            <UserMessage message={user_message} isLoading={isLoading} />
+            <UserMessage
+              userId={userId}
+              message={user_message}
+              isLoading={isLoading}
+            />
             <ContentGrid>
               <ChartsGrid>
                 <MainChart>
@@ -111,7 +103,7 @@ function Dashboard() {
                 </MainChart>
                 <AverageSessionsChart userId={userId} data={data} />
 
-                {/* <RadarActivities userId={userId} perf={data?.perf} /> */}
+                {/* <RadarActivities userId={userId} data={data} /> */}
                 <Score userId={userId} data={data} />
               </ChartsGrid>
               <Macros userId={userId} data={data.userMainData} />

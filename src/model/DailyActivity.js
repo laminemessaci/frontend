@@ -4,7 +4,7 @@ export class Activity {
     this._data = data;
   }
 
-  getActivities() {
+  get _activities() {
     const dailyActivity = [];
     for (let user of this._data) {
       if (user.userId === parseInt(this._userId)) {
@@ -20,8 +20,8 @@ export class Activity {
           });
         }
         // console.log('dayly activities ::', dailyActivity);
-        return dailyActivity;
       }
     }
+    return dailyActivity;
   }
 }

@@ -16,10 +16,8 @@ import {
 } from './index.styles.js';
 
 export function AverageSessionsChart({ userId, data }) {
-  const sessions = new SessionsAverage(
-    userId,
-    data.userAverageSession
-  ).getFormatedData();
+  const sessions = new SessionsAverage(userId, data.userAverageSession)
+    ._sessions;
   //console.log('sessions: ', data.userAverageSession);
 
   return (

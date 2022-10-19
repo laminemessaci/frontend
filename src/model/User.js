@@ -7,7 +7,7 @@ class User {
   getId() {
     return this._id;
   }
-  getFirstName() {
+  get _firstName() {
     let firstName = 'unknown user';
     USER_MAIN_DATA.forEach((user) => {
       if (user.id === this._id) {
@@ -16,7 +16,7 @@ class User {
     });
     return firstName;
   }
-  getKeyData() {
+  get _keyData() {
     const nutriments = ['Calories', 'Protéines', 'Glucides', 'Lipides'];
     let values = new Array(5);
     const userData = this._data.forEach((user) => {

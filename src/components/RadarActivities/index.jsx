@@ -1,27 +1,25 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import {
   PolarAngleAxis,
   PolarGrid,
   Radar,
   RadarChart,
   ResponsiveContainer,
-} from "recharts";
-import { theme } from "../../constants";
+} from 'recharts';
+import { theme } from '../../constants';
 
-import { RadarContainer } from "./index.styles.js";
-import { Activity } from "../../model/Activity.js";
-import { useParams } from "react-router";
+import { RadarContainer } from './index.styles.js';
+import { Activity } from '../../model/DailyActivity.js';
 
-function RadarActivities() {
-  const params = useParams();
-  const performances = new Activity(parseInt(params.userId)).getActivities();
+function RadarActivities(userId, data) {
+  const performances = new Activity(userId, data)._activities;
 
   return (
     <RadarContainer>
       <ResponsiveContainer width="100%" height="100%">
         <RadarChart
           data={performances}
-          outerRadius={window.innerWidth > 1340 ? "70%" : "60%"}
+          outerRadius={window.innerWidth > 1340 ? '70%' : '60%'}
         >
           <PolarGrid radialLines={false} />
           <PolarAngleAxis
