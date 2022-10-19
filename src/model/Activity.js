@@ -2,8 +2,6 @@ export class Activity {
   constructor(userId, data) {
     this._userId = userId;
     this._data = data;
-    console.log('ACTTTTTT: ', data);
-    this.getActivities();
   }
 
   getActivities() {
