@@ -103,7 +103,7 @@ function Dashboard() {
                 </MainChart>
                 <AverageSessionsChart userId={userId} data={data} />
 
-                {/* <RadarActivities userId={userId} data={data} /> */}
+                <RadarActivities userId={userId} data={data} />
                 <Score userId={userId} data={data} />
               </ChartsGrid>
               <Macros userId={userId} data={data.userMainData} />

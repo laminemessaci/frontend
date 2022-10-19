@@ -1,12 +1,12 @@
 export const findPath = (ob, key: string) => {
   const path = [];
   const keyExists = (obj) => {
-    if (!obj || (typeof obj !== "object" && !Array.isArray(obj))) {
+    if (!obj || (typeof obj !== 'object' && !Array.isArray(obj))) {
       return false;
     } else if (obj.hasOwnProperty(key)) {
       return true;
     } else if (Array.isArray(obj)) {
-      let parentKey = path.length ? path.pop() : "";
+      let parentKey = path.length ? path.pop() : '';
 
       for (let i = 0; i < obj.length; i++) {
         path.push(`${parentKey}[${i}]`);
@@ -31,36 +31,40 @@ export const findPath = (ob, key: string) => {
 
   keyExists(ob);
 
-  return path.join(".");
+  return path.join('.');
 };
 
 export function formatData(obj) {
-  console.log("obj==> ", obj);
-
+  // console.log("obj==> ", obj);
+  const results = [];
   obj.data.map((nbrKind, key) => {
     if (Object.keys(obj.kind)[key] == nbrKind.kind) {
       const frenchDatas = translateToFr(obj.kind[key + 1]);
-      console.log(frenchDatas);
 
       nbrKind.kind = frenchDatas;
     }
-    console.log(nbrKind);
-    return nbrKind;
+    console.log('obj', nbrKind);
+    results.push({
+      activity: nbrKind.kind,
+      value: nbrKind.value,
+    });
   });
+  console.log('Results: ', results);
+  return results;
 }
 
 function translateToFr(str) {
   var performances = {
-    energy: capitalizesFirstLetter("energie"),
-    strength: capitalizesFirstLetter("force"),
-    speed: capitalizesFirstLetter("vitesse"),
-    intensity: capitalizesFirstLetter("intensity"),
-    cardio: capitalizesFirstLetter("cardio"),
-    endurance: capitalizesFirstLetter("endurance"),
+    energy: capitalizesFirstLetter('energie'),
+    strength: capitalizesFirstLetter('force'),
+    speed: capitalizesFirstLetter('vitesse'),
+    intensity: capitalizesFirstLetter('intensité'),
+    cardio: capitalizesFirstLetter('cardio'),
+    endurance: capitalizesFirstLetter('endurance'),
 
-    default: "unknown",
+    default: 'unknown',
   };
-  return performances[str] || performances["default"];
+  return performances[str] || performances['default'];
 }
 
 export function capitalizesFirstLetter(str) {

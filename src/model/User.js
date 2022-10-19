@@ -10,7 +10,7 @@ class User {
   get _firstName() {
     let firstName = 'unknown user';
     USER_MAIN_DATA.forEach((user) => {
-      if (user.id === this._id) {
+      if (user.id === parseInt(this._id)) {
         firstName = user.userInfos.firstName;
       }
     });

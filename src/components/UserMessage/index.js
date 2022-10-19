@@ -1,11 +1,10 @@
 import React from 'react';
-import { useParams } from 'react-router';
+import PropTypes from 'prop-types';
 import User from '../../model/User.js';
 import { FirstName, Message, Title } from './index.styles.js';
 
 function UserMessage({ userId, message, isLoading }) {
-  const params = useParams();
-  const firstName = new User(parseInt(userId))._firstName || 'unknown user';
+  const firstName = new User(userId)._firstName || 'unknown user';
   console.log('first Name:', firstName, isLoading);
   return (
     <>
@@ -18,5 +17,11 @@ function UserMessage({ userId, message, isLoading }) {
     </>
   );
 }
+
+UserMessage.propTypes = {
+  userId: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+};
 
 export default UserMessage;

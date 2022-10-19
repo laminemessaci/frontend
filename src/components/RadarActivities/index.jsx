@@ -7,13 +7,14 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { theme } from '../../constants';
+import ActivityChart from '../../model/ActivityChart.js';
 
 import { RadarContainer } from './index.styles.js';
-import { Activity } from '../../model/DailyActivity.js';
 
-function RadarActivities(userId, data) {
-  const performances = new Activity(userId, data)._activities;
+function RadarActivities({ userId, data }) {
+  const performances = new ActivityChart(userId, data)._activities;
 
+  console.log('Performances ==> ', performances);
   return (
     <RadarContainer>
       <ResponsiveContainer width="100%" height="100%">
@@ -28,7 +29,7 @@ function RadarActivities(userId, data) {
             dy={4}
             tickLine={false}
             tick={{
-              fontSize: 12,
+              fontSize: 10,
               fontWeight: 500,
             }}
           />
