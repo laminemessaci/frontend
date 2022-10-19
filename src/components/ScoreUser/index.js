@@ -1,22 +1,23 @@
-import PropTypes from "prop-types";
-import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
+import PropTypes from 'prop-types';
+import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts';
 
 import {
   ScoreContainer,
   ScoreLabel,
   ScoreTitle,
   ScoreValue,
-} from "./index.styles.js";
-import { Score } from "../../model/Score.js";
-import { theme } from "../../constants";
+} from './index.styles.js';
+import { Score } from '../../model/Score.js';
+import { theme } from '../../constants';
 
-function ScoreUser({ todayScore }) {
-  const scoreData = new Score(todayScore);
-  const data = [
-    { name: "completed", value: scoreData._score, fillColor: scoreData.fill },
+function ScoreUser({ userId, data }) {
+  const scoreData = new Score(userId, data); //userMainData[0].todayScore
+  console.log(scoreData);
+  const pieData = [
+    { name: 'completed', value: scoreData.score, fillColor: scoreData.fill },
     {
-      name: "not-completed",
-      value: 1 - scoreData._score,
+      name: 'not-completed',
+      value: 1 - scoreData.score,
       fillColor: `${theme.colors.transparent}`,
     },
   ];
@@ -28,14 +29,14 @@ function ScoreUser({ todayScore }) {
       <ResponsiveContainer width="100%" height="100%">
         <PieChart width={160} height={160}>
           <Pie
-            data={data}
+            data={pieData}
             dataKey="value"
             innerRadius={67}
             outerRadius={80}
             startAngle={90}
             endAngle={450}
           >
-            {data.map((entry, index) => (
+            {pieData.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
                 fill={entry.fillColor}
@@ -47,7 +48,7 @@ function ScoreUser({ todayScore }) {
       </ResponsiveContainer>
 
       <ScoreLabel>
-        <ScoreValue>{scoreData._score}</ScoreValue>
+        <ScoreValue>{100 * scoreData.score}</ScoreValue>
         <br />
         de votre
         <br />
@@ -58,6 +59,7 @@ function ScoreUser({ todayScore }) {
 }
 
 ScoreUser.propTypes = {
-  todayScore: PropTypes.number.isRequired,
+  userId: PropTypes.string.isRequired,
+  data: PropTypes.object.isRequired,
 };
 export default ScoreUser;
