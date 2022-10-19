@@ -16,8 +16,11 @@ import {
 } from './index.styles.js';
 
 export function AverageSessionsChart({ userId, data }) {
-  const sessions = new SessionsAverage(userId, data).getFormatedData();
-  console.log('sessions: ', sessions);
+  const sessions = new SessionsAverage(
+    userId,
+    data.userAverageSession
+  ).getFormatedData();
+  //console.log('sessions: ', data.userAverageSession);
 
   return (
     <AverageSessionsContainer>
@@ -75,7 +78,8 @@ export function AverageSessionsChart({ userId, data }) {
 }
 
 AverageSessionsChart.propTypes = {
-  // userId: PropTypes.string.isRequired,
+  userId: PropTypes.string.isRequired,
+  data: PropTypes.object.isRequired,
 };
 
 function CustomTooltip({ active, payload }) {

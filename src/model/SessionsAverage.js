@@ -8,17 +8,18 @@ export class SessionsAverage {
   constructor(userId, data) {
     this._userId = userId;
     this._data = data;
-    console.log('userId  ' + userId);
+    console.log('sessions  ' + data);
   }
 
   getFormatedData() {
     let sessions = [];
     const days = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
 
-    USER_AVERAGE_SESSIONS.map((user) => {
-      console.log('userId  ' + user.userId);
+    this._data.map((user) => {
       if (user.userId === parseInt(this._userId)) {
-        this._data.forEach((session) => {
+        const item = user.sessions;
+        // console.log('item=> ', item);
+        item.map((session) => {
           sessions.push({
             day: days[session.day - 1],
             sessionLength: session.sessionLength,
@@ -26,6 +27,8 @@ export class SessionsAverage {
         });
       }
     });
+
+    // console.log('sessions: ', sessions);
 
     return sessions;
   }

@@ -109,10 +109,7 @@ function Dashboard() {
                 <MainChart>
                   <DailyActivity userId={userId} data={data} />
                 </MainChart>
-                {/* <AverageSessionsChart
-                  userId={userId}
-                  data={data?.average?.sessions}
-                /> */}
+                <AverageSessionsChart userId={userId} data={data} />
 
                 {/* <RadarActivities userId={userId} perf={data?.perf} /> */}
                 {/* <Score todayScore={data?.user?.todayScore} /> */}

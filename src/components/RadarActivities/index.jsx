@@ -6,12 +6,9 @@ import {
   RadarChart,
   ResponsiveContainer,
 } from "recharts";
-import { activitie_radar } from "../../constants/index.js";
-import { USER_ACTIVITY, USER_PERFORMANCE } from "../../mock/mockedData.js";
 import { theme } from "../../constants";
 
 import { RadarContainer } from "./index.styles.js";
-import { formatData } from "../../utils";
 import { Activity } from "../../model/Activity.js";
 import { useParams } from "react-router";
 
