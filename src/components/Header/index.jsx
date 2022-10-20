@@ -1,16 +1,21 @@
-import { icons } from "../../constants/index.js";
+import { icons } from '../../constants/index.js';
 import {
   HeaderContainer,
   HeaderLink,
+  ImageLogo,
   LinkedList,
   Logo,
-} from "./index.styles.js";
+} from './index.styles.js';
 
 export function Header() {
   return (
     <HeaderContainer>
       <Logo href="/">
-        <img src={icons.SportSeeLogo} alt="SportSee" />
+        <ImageLogo
+          // style={{ width: '20px' }}
+          src={icons.SportSeeLogo}
+          alt="SportSee"
+        />
       </Logo>
 
       <nav>

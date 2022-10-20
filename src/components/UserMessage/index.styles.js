@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { theme } from "../../constants/index.js";
+import styled from 'styled-components';
+import { theme } from '../../constants/index.js';
 
 export const Title = styled.h1`
   margin: 0;
@@ -8,6 +8,9 @@ export const Title = styled.h1`
 
   @media (max-width: 1340px) {
     font-size: 2.5rem;
+  }
+  @media (max-width: 968px) {
+    font-size: 1.5rem;
   }
 `;
 

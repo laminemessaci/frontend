@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import { theme } from "./constants/index.js";
+import { createGlobalStyle } from 'styled-components';
+import { theme } from './constants/index.js';
 
 export const MainStyle = createGlobalStyle`
   html {
@@ -29,7 +29,7 @@ export const MainStyle = createGlobalStyle`
 
     @media (max-width: 1340px) {
       max-width: 1024px;
-      max-height: 780px;
+      max-height: auto;
     }
   }
 

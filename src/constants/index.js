@@ -59,4 +59,4 @@ export const activitie_radar = {
 };
 
 export const user_message =
-  "Félicitations ! Vous avez explosé vos objectifs hier!&nbsp;👏";
+  "Félicitations ! Vous avez explosé vos objectifs hier ! 👏";

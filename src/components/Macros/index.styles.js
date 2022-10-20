@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const MacroContainer = styled.div`
   display: grid;
@@ -10,5 +10,13 @@ export const MacroContainer = styled.div`
   }
   @media (max-width: 1340px) {
     gap: 1.25rem;
+  }
+  @media (max-width: 968px) {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: space-between;
+  }
+  @media (max-width: 788px) {
   }
 `;

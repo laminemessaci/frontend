@@ -1,30 +1,26 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import {
   PolarAngleAxis,
   PolarGrid,
   Radar,
   RadarChart,
   ResponsiveContainer,
-} from "recharts";
-import { activitie_radar } from "../../constants/index.js";
-import { USER_ACTIVITY, USER_PERFORMANCE } from "../../mock/mockedData.js";
-import { theme } from "../../constants";
+} from 'recharts';
+import { theme } from '../../constants';
+import ActivityChart from '../../model/ActivityChart.js';
 
-import { RadarContainer } from "./index.styles.js";
-import { formatData } from "../../utils";
-import { Activity } from "../../model/Activity.js";
-import { useParams } from "react-router";
+import { RadarContainer } from './index.styles.js';
 
-function RadarActivities() {
-  const params = useParams();
-  const performances = new Activity(parseInt(params.userId)).getActivities();
+function RadarActivities({ userId, data }) {
+  const performances = new ActivityChart(userId, data)._activities;
 
+  console.log('Performances ==> ', performances);
   return (
     <RadarContainer>
       <ResponsiveContainer width="100%" height="100%">
         <RadarChart
           data={performances}
-          outerRadius={window.innerWidth > 1340 ? "70%" : "60%"}
+          outerRadius={window.innerWidth > 1340 ? '70%' : '60%'}
         >
           <PolarGrid radialLines={false} />
           <PolarAngleAxis
@@ -33,7 +29,7 @@ function RadarActivities() {
             dy={4}
             tickLine={false}
             tick={{
-              fontSize: 12,
+              fontSize: 10,
               fontWeight: 500,
             }}
           />

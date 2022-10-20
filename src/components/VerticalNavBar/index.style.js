@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { theme } from "../../constants/index.js";
+import styled from 'styled-components';
+import { theme } from '../../constants/index.js';
 
 const VerticalBarContainer = styled.div`
   display: grid;
@@ -8,7 +8,10 @@ const VerticalBarContainer = styled.div`
   background: ${theme.colors.neutral900};
 
   @media (max-width: 1340px) {
-    max-height: 692px;
+    max-height: auto;
+  }
+  @media (max-width: 968px) {
+    max-height: auto;
   }
 `;
 
@@ -23,6 +26,13 @@ const ActivityIcon = styled.img`
   padding: 0.5rem;
   &:hover {
     box-shadow: 0 0 25px #ccc;
+  }
+  @media (max-width: 1200px) {
+    max-height: auto;
+    width: 4rem;
+  }
+  @media (max-width: 968px) {
+    width: 3.5rem;
   }
 `;
 
