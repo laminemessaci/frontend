@@ -1,11 +1,15 @@
-import styled from "styled-components";
-import { theme } from "./../../constants";
+import styled from 'styled-components';
+import { theme } from './../../constants';
 
 export const HeaderContainer = styled.header`
   display: grid;
   grid-template-columns: 16rem 1fr;
   color: white;
   background: ${theme.colors.neutral900};
+  @media (max-width: 788px) {
+    display: flex;
+    justify-content: space-between;
+  }
 `;
 
 export const Logo = styled.a`
@@ -17,6 +21,17 @@ export const Logo = styled.a`
   @media (max-width: 1340px) {
     padding: 0.75rem 1.5rem;
   }
+  @media (max-width: 1024) {
+    padding: 0.25rem 0.75rem;
+  }
+  @media (max-width: 968px) {
+    padding: 0.2rem 0.5rem;
+  }
+`;
+export const ImageLogo = styled.img`
+  @media (max-width: 968px) {
+    width: 8rem;
+  }
 `;
 
 export const LinkedList = styled.ul`
@@ -26,6 +41,14 @@ export const LinkedList = styled.ul`
   font-weight: 500;
   text-align: center;
   list-style-type: none;
+  @media (max-width: 788px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  @media (max-width: 668px) {
+    flex-flow: column wrap; /*4*/
+  }
 `;
 
 export const HeaderLink = styled.a`
@@ -39,5 +62,11 @@ export const HeaderLink = styled.a`
   }
   @media (max-width: 1340px) {
     font-size: 1.25rem;
+  }
+  @media (max-width: 1200px) {
+    font-size: 1rem;
+  }
+  @media (max-width: 968px) {
+    font-size: 0.75rem;
   }
 `;

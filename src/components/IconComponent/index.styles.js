@@ -1,6 +1,5 @@
-import styled from "styled-components";
-import { theme } from "../../constants/index.js";
-
+import styled from 'styled-components';
+import { theme } from '../../constants/index.js';
 
 const IconContainer = styled.div`
   display: flex;
@@ -9,6 +8,12 @@ const IconContainer = styled.div`
   background: ${theme.colors.neutral100};
   @media (max-width: 1340px) {
     padding: 1.75rem 1.25rem;
+  }
+  @media (max-width: 788px) {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
   }
 `;
 

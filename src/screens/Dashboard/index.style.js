@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { theme } from "../../constants/index.js";
+import styled from 'styled-components';
+import { theme } from '../../constants/index.js';
 
 export const DashboardContainer = styled.main`
   display: grid;
@@ -14,7 +14,6 @@ export const MainContent = styled.section`
   }
 `;
 
-
 export const ContentGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -23,18 +22,24 @@ export const ContentGrid = styled.div`
   @media (max-width: 1340px) {
     gap: 1rem;
   }
+  @media (max-width: 968px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
 
 export const ChartsGrid = styled.div`
-  grid-column: 1/4;
-
   display: grid;
+  grid-column: 1/4;
   grid-template: 20rem 16rem / repeat(3, 1fr);
   gap: 2rem;
 
   @media (max-width: 1340px) {
     grid-template: 18rem 14rem / repeat(3, 1fr);
     gap: 1rem;
+  }
+  @media (max-width: 968px) {
+    grid-template: 16rem 11rem / repeat(3, 1fr);
+    gap: 0.75rem;
   }
 
   > * {

@@ -34,40 +34,23 @@ function Dashboard() {
 
   console.log('state: ', data);
 
-  async function getMockedData() {
-    try {
-      const userData = await getAllDataMocked();
-
-      setState({
-        ...state,
-        data: userData,
-        isDataLoaded: true,
-        error: '',
-        isLoading: false,
-      });
-    } catch (error) {
-      setState({ ...state, error, isLoading: false });
-    }
-  }
-
   useEffect(() => {
-    getMockedData();
-    // async function getMockeData() {
-    //   try {
-    //     const userDatas = await getAllDatasMocked();
+    async function getMockedData() {
+      try {
+        const userData = await getAllDataMocked();
 
-    //     setState({
-    //       ...state,
-    //       data: userDatas,
-    //       isDataLoaded: true,
-    //       error: '',
-    //       isLoading: false,
-    //     });
-    //   } catch (error) {
-    //     setState({ ...state, error, isLoading: false });
-    //   }
-    // }
-    // getMockeData();
+        setState({
+          ...state,
+          data: userData,
+          isDataLoaded: true,
+          error: '',
+          isLoading: false,
+        });
+      } catch (error) {
+        setState({ ...state, error, isLoading: false });
+      }
+    }
+    getMockedData();
     setState({ ...state, isLoading: false });
     console.log('state: ', state);
   }, []);
