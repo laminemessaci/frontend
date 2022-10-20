@@ -20,16 +20,16 @@ export function Header() {
 
       <nav>
         <LinkedList>
-          <li>
+          <li style={{ margin: '8px' }}>
             <HeaderLink href="/">Accueil</HeaderLink>
           </li>
-          <li>
+          <li style={{ margin: '8px' }}>
             <HeaderLink href="/">Profil</HeaderLink>
           </li>
-          <li>
+          <li style={{ margin: '8px' }}>
             <HeaderLink href="/">Réglages</HeaderLink>
           </li>
-          <li>
+          <li style={{ margin: '8px' }}>
             <HeaderLink href="/">Communauté</HeaderLink>
           </li>
         </LinkedList>

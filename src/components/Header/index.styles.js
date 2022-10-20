@@ -6,10 +6,6 @@ export const HeaderContainer = styled.header`
   grid-template-columns: 16rem 1fr;
   color: white;
   background: ${theme.colors.neutral900};
-  @media (max-width: 788px) {
-    display: flex;
-    justify-content: space-between;
-  }
 `;
 
 export const Logo = styled.a`
@@ -31,6 +27,7 @@ export const Logo = styled.a`
 export const ImageLogo = styled.img`
   @media (max-width: 968px) {
     width: 8rem;
+    position: relative;
   }
 `;
 
@@ -41,13 +38,12 @@ export const LinkedList = styled.ul`
   font-weight: 500;
   text-align: center;
   list-style-type: none;
+
   @media (max-width: 788px) {
     display: flex;
-    justify-content: space-between;
+    flex-flow: column wrap;
+    padding: 2rem;
     align-items: center;
-  }
-  @media (max-width: 668px) {
-    flex-flow: column wrap; /*4*/
   }
 `;
 
@@ -67,6 +63,8 @@ export const HeaderLink = styled.a`
     font-size: 1rem;
   }
   @media (max-width: 968px) {
+    display:flex
+    flex-direction:column;
     font-size: 0.75rem;
   }
 `;
