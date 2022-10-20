@@ -1,21 +1,22 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { ErrorMessage, MainContainer, StatusCode } from './index.style.js';
 
-import "./style.css";
+import './style.css';
 
 function Page404() {
   return (
-    <main className="Error404">
-      <p className="Error404__status-code">404</p>
+    <MainContainer>
+      <StatusCode>404</StatusCode>
 
-      <p className="Error404__text">
+      <ErrorMessage>
         Oups ! La page que vous demandez n'existe pas.
-      </p>
+      </ErrorMessage>
 
       <Link className="Error404__link-to-home" to="/">
         Retourner sur la page d'accueil
       </Link>
-    </main>
+    </MainContainer>
   );
 }
 

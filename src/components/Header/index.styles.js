@@ -26,7 +26,7 @@ export const Logo = styled.a`
 `;
 export const ImageLogo = styled.img`
   @media (max-width: 968px) {
-    width: 8rem;
+    width: rem;
     position: relative;
   }
 `;
@@ -63,8 +63,9 @@ export const HeaderLink = styled.a`
     font-size: 1rem;
   }
   @media (max-width: 968px) {
-    display:flex
-    flex-direction:column;
+    display: flex;
+    flex-direction: column;
     font-size: 0.75rem;
+    text-align: center;
   }
 `;
