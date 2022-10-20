@@ -8,7 +8,7 @@ const VerticalBarContainer = styled.div`
   background: ${theme.colors.neutral900};
 
   @media (max-width: 1340px) {
-    max-height: 692px;
+    max-height: auto;
   }
   @media (max-width: 968px) {
     max-height: auto;
@@ -28,6 +28,7 @@ const ActivityIcon = styled.img`
     box-shadow: 0 0 25px #ccc;
   }
   @media (max-width: 1200px) {
+    max-height: auto;
     width: 4rem;
   }
   @media (max-width: 968px) {

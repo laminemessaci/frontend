@@ -17,6 +17,7 @@ import {
   DashboardContainer,
   MainChart,
   MainContent,
+  SubMainChart,
 } from './index.style.js';
 const initialState = {
   isLoading: true,
@@ -85,7 +86,6 @@ function Dashboard() {
                   <DailyActivity userId={userId} data={data} />
                 </MainChart>
                 <AverageSessionsChart userId={userId} data={data} />
-
                 <RadarActivities userId={userId} data={data} />
                 <Score userId={userId} data={data} />
               </ChartsGrid>

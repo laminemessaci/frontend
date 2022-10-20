@@ -9,9 +9,18 @@ const IconContainer = styled.div`
   @media (max-width: 1340px) {
     padding: 1.75rem 1.25rem;
   }
+  @media (max-width: 968px) {
+    padding: 0.75rem 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
   @media (max-width: 788px) {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.75rem;
     flex-wrap: wrap;
   }

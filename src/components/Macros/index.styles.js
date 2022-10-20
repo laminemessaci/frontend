@@ -15,11 +15,8 @@ export const MacroContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 1rem;
+    justify-content: space-between;
   }
   @media (max-width: 788px) {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    flex-wrap: wrap;
   }
 `;

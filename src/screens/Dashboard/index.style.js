@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { theme } from '../../constants/index.js';
 
 export const DashboardContainer = styled.main`
   display: grid;
@@ -23,7 +22,7 @@ export const ContentGrid = styled.div`
     gap: 1rem;
   }
   @media (max-width: 968px) {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
 `;
 
