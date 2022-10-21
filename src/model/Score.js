@@ -10,10 +10,20 @@ export class Score {
     this._data = data.userMainData;
   }
 
+  /**
+   * Get the name
+   *
+   * @return  {string} name
+   */
   get name() {
     return 'score';
   }
 
+  /**
+   * Get  user score
+   *
+   * @return  {number} score number
+   */
   get score() {
     let score = 0;
     this._data.forEach((element) => {
@@ -25,6 +35,11 @@ export class Score {
     return score;
   }
 
+  /**
+   * Get color
+   *
+   * @return  {string}
+   */
   get fill() {
     return `${theme.colors.primary500}`;
   }

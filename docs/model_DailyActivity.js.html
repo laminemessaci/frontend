@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: model/User.js</title>
+    <title>JSDoc: Source: model/DailyActivity.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: model/User.js</h1>
+    <h1 class="page-title">Source: model/DailyActivity.js</h1>
 
     
 
@@ -26,41 +26,41 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { USER_MAIN_DATA } from './../mock/mockedData';
-
-/**Constructor Pattern - User
+            <pre class="prettyprint source linenums"><code>/**Constructor Pattern - Daily Activities
  * @constructor
- * @param {string} userId
- * @param {object} data  contains all user data
+ * @param {string} userId  userId
+ * @param {object} data contains all data
  */
-export class User {
+export class Activity {
   constructor(userId, data) {
-    this._id = userId;
+    this._userId = userId;
     this._data = data;
   }
-  getId() {
-    return this._id;
-  }
-  get _firstName() {
-    let firstName = 'unknown user';
-    USER_MAIN_DATA.forEach((user) => {
-      if (user.id === parseInt(this._id)) {
-        firstName = user.userInfos.firstName;
-      }
-    });
-    return firstName;
-  }
-  get _keyData() {
-    const nutriments = ['Calories', 'Protéines', 'Glucides', 'Lipides'];
-    let values = new Array(5);
-    const userData = this._data.forEach((user) => {
-      if (user.userId === parseInt(this._id)) {
-        console.log(user.keyData);
-        values = Object.values(user.keyData);
-      }
-    });
 
-    return { nutriments, values };
+  /**
+   * Formats User daily activities with good formatted date
+   *
+   * @return  {{day:string, kilogram: number, calories: number}}  dailyActivity
+   */
+  get _activities() {
+    const dailyActivity = [];
+    for (let user of this._data) {
+      if (user.userId === parseInt(this._userId)) {
+        // console.log('dans condition');
+        for (let item of user.sessions) {
+          // console.log('item: ', item);
+          const [yyyy, mm, dd] = item.day.split('-');
+
+          dailyActivity.push({
+            day: `${dd}/${mm}`,
+            kilogram: item.kilogram,
+            calories: item.calories,
+          });
+        }
+        // console.log('dayly activities ::', dailyActivity);
+      }
+    }
+    return dailyActivity;
   }
 }
 </code></pre>

@@ -1,4 +1,5 @@
 import { formatData } from '../utils/index.js';
+
 /**Constructor Pattern - Activities Chart
  * @constructor
  * @param {string} userId  userId

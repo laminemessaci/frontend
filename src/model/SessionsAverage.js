@@ -1,7 +1,14 @@
+// @ts-nocheck
 /**Constructor Pattern - Average session
  * @constructor
  * @param {string} userId
  * @param {object} data - A average session with a day
+ */
+
+/**Constructor Pattern - Sessions Chart
+ * @constructor
+ * @param {string} userId  userId
+ * @param {object} data contains all data
  */
 export class SessionsAverage {
   constructor(userId, data) {
@@ -10,6 +17,11 @@ export class SessionsAverage {
     console.log('sessions  ' + data);
   }
 
+  /**
+   * Formats User sessions from initial data
+   *
+   * @return  {{day: string, sessionLength:number}}   formatted sessions
+   */
   get _sessions() {
     let sessions = [];
     const days = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];

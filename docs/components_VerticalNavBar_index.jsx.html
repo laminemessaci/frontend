@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: model/User.js</title>
+    <title>JSDoc: Source: components/VerticalNavBar/index.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: model/User.js</h1>
+    <h1 class="page-title">Source: components/VerticalNavBar/index.jsx</h1>
 
     
 
@@ -26,43 +26,55 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { USER_MAIN_DATA } from './../mock/mockedData';
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import { icons } from '../../constants';
 
-/**Constructor Pattern - User
- * @constructor
- * @param {string} userId
- * @param {object} data  contains all user data
+import {
+  Activities,
+  ActivityIcon,
+  Copyright,
+  VerticalBarContainer,
+} from './index.style.js';
+
+/**
+ * Navigation Bar Component
+ *
+ * @return {JSX.Element}
  */
-export class User {
-  constructor(userId, data) {
-    this._id = userId;
-    this._data = data;
-  }
-  getId() {
-    return this._id;
-  }
-  get _firstName() {
-    let firstName = 'unknown user';
-    USER_MAIN_DATA.forEach((user) => {
-      if (user.id === parseInt(this._id)) {
-        firstName = user.userInfos.firstName;
-      }
-    });
-    return firstName;
-  }
-  get _keyData() {
-    const nutriments = ['Calories', 'Protéines', 'Glucides', 'Lipides'];
-    let values = new Array(5);
-    const userData = this._data.forEach((user) => {
-      if (user.userId === parseInt(this._id)) {
-        console.log(user.keyData);
-        values = Object.values(user.keyData);
-      }
-    });
+function VerticalNavBar() {
+  return (
+    &lt;VerticalBarContainer>
+      &lt;nav>
+        &lt;Activities>
+          &lt;li>
+            &lt;a href="/">
+              &lt;ActivityIcon src={icons.Meditation} alt="Méditation" />
+            &lt;/a>
+          &lt;/li>
+          &lt;li>
+            &lt;a href="/">
+              &lt;ActivityIcon src={icons.Swimming} alt="Natation" />
+            &lt;/a>
+          &lt;/li>
+          &lt;li>
+            &lt;a href="/">
+              &lt;ActivityIcon src={icons.Cycling} alt="Cyclisme" />
+            &lt;/a>
+          &lt;/li>
+          &lt;li>
+            &lt;a href="/">
+              &lt;ActivityIcon src={icons.bodybuilding} alt="Musculation" />
+            &lt;/a>
+          &lt;/li>
+        &lt;/Activities>
+      &lt;/nav>
 
-    return { nutriments, values };
-  }
+      &lt;Copyright>Copyright SportSee 2022&lt;/Copyright>
+    &lt;/VerticalBarContainer>
+  );
 }
+
+export default VerticalNavBar;
 </code></pre>
         </article>
     </section>

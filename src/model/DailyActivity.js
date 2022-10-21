@@ -1,9 +1,20 @@
+// @ts-nocheck
+/**Constructor Pattern - Daily Activities
+ * @constructor
+ * @param {string} userId  userId
+ * @param {object} data contains all data
+ */
 export class Activity {
   constructor(userId, data) {
     this._userId = userId;
     this._data = data;
   }
 
+  /**
+   * Formats User daily activities with good formatted date
+   *
+   * @return  {{day:string, kilogram: number, calories: number}}  dailyActivity
+   */
   get _activities() {
     const dailyActivity = [];
     for (let user of this._data) {
