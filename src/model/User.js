@@ -29,7 +29,7 @@ export class User {
   /**
    * Formats User keyData from initial data
    *
-   * @return  {{nutriments: Array.<string>, values: Array.<string}}   { nutriments, values }
+   * @return  {{nutriments: Array, values: Array}   { nutriments, values }
    */
   get _keyData() {
     const nutriments = ['Calories', 'Protéines', 'Glucides', 'Lipides'];

@@ -27,6 +27,10 @@ const initialState = {
   data: null,
 };
 
+/**
+ * @file User Dashboard page
+ */
+
 function Dashboard() {
   const [state, setState] = useState(initialState);
 

@@ -57,7 +57,7 @@ function RadarActivities({ userId, data }) {
 
 RadarActivities.propTypes = {
   userId: PropTypes.string.isRequired,
-  data: PropTypes.array.isRequired,
+  data: PropTypes.object.isRequired,
 };
 
 export default RadarActivities;
