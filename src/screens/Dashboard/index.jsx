@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect, useState } from 'react';
 import ReactLoading from 'react-loading';
 import { AverageSessionsChart } from '../../components/AverageSessions';
@@ -10,15 +11,15 @@ import UserMessage from '../../components/UserMessage/index.js';
 import VerticalNavBar from '../../components/VerticalNavBar';
 import { user_message } from '../../constants/index.js';
 import { getAllDataMocked } from '../../services/mockedAPI/index.js';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import {
   ChartsGrid,
   ContentGrid,
   DashboardContainer,
   MainChart,
   MainContent,
-  SubMainChart,
 } from './index.style.js';
+
 const initialState = {
   isLoading: true,
   error: null,
@@ -26,14 +27,22 @@ const initialState = {
   data: null,
 };
 
+/**
+ * @file User Dashboard page
+ */
+
 function Dashboard() {
   const [state, setState] = useState(initialState);
 
   const { userId } = useParams();
+  const navigate = useNavigate();
+  if (!['12', '18'].includes(userId)) {
+    navigate('/Page404');
+  }
 
   const { isLoading, isDataLoaded, data } = state;
 
-  console.log('state: ', data);
+  // console.log('state: ', data);
 
   useEffect(() => {
     async function getMockedData() {

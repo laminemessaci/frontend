@@ -1,13 +1,18 @@
-import React from "react";
-import { icons } from "../../constants";
+import React from 'react';
+import { icons } from '../../constants';
 
 import {
   Activities,
   ActivityIcon,
   Copyright,
   VerticalBarContainer,
-} from "./index.style.js";
+} from './index.style.js';
 
+/**
+ * Navigation Bar Component
+ *
+ * @return {JSX.Element}
+ */
 function VerticalNavBar() {
   return (
     <VerticalBarContainer>

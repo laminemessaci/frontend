@@ -1,3 +1,5 @@
+// @ts-nocheck
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts';
 
@@ -10,6 +12,14 @@ import {
 import { Score } from '../../model/Score.js';
 import { theme } from '../../constants';
 
+/**
+ * Component for showing  User score
+ *
+ * @component ScoreUser
+ * @param   {string}  userId  User Id
+ * @param   {Object}  data   all User data
+ * @return {JSX.Element}
+ */
 function ScoreUser({ userId, data }) {
   const scoreData = new Score(userId, data);
   console.log(scoreData);

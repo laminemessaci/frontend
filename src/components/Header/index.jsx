@@ -1,3 +1,4 @@
+import React from 'react';
 import { icons } from '../../constants/index.js';
 import {
   HeaderContainer,
@@ -6,6 +7,13 @@ import {
   LinkedList,
   Logo,
 } from './index.styles.js';
+
+/**
+ * Header component app
+ *
+ * @component Header
+ * @return {JSX.Element}
+ */
 
 export function Header() {
   return (
@@ -20,16 +28,16 @@ export function Header() {
 
       <nav>
         <LinkedList>
-          <li>
+          <li style={{ margin: '8px' }}>
             <HeaderLink href="/">Accueil</HeaderLink>
           </li>
-          <li>
+          <li style={{ margin: '8px' }}>
             <HeaderLink href="/">Profil</HeaderLink>
           </li>
-          <li>
+          <li style={{ margin: '8px' }}>
             <HeaderLink href="/">Réglages</HeaderLink>
           </li>
-          <li>
+          <li style={{ margin: '8px' }}>
             <HeaderLink href="/">Communauté</HeaderLink>
           </li>
         </LinkedList>

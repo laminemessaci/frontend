@@ -1,8 +1,18 @@
+// @ts-nocheck
 import PropTypes from 'prop-types';
 import IconComponent from '../IconComponent/index.jsx';
 import { MacroContainer } from './index.styles.js';
-import User from '../../model/User.js';
+import { User } from '../../model/User.js';
+import React from 'react';
 
+/**
+ * Component that displays a list of Nutrition values
+ *
+ * @param   {string}  userId  User Id
+ * @param   {Object}  data   all User data
+ *
+ * @return {JSX.Element}
+ */
 function Macros({ userId, data }) {
   // console.log(data);
   const { nutriments, values } = new User(userId, data)._keyData;

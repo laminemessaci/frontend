@@ -1,8 +1,13 @@
-import React from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
-import Dashboard from "../screens/Dashboard/index.jsx";
-import Page404 from "../screens/Page404/index.jsx";
+import React from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import Dashboard from '../screens/Dashboard/index.jsx';
+import Page404 from '../screens/Page404/index.jsx';
 
+/**
+ * @component Navigation Component
+ *
+ * @return  {JSX.Element} Routes
+ */
 function Navigation() {
   return (
     <Routes>

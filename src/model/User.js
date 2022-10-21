@@ -1,12 +1,21 @@
+// @ts-nocheck
 import { USER_MAIN_DATA } from './../mock/mockedData';
-class User {
-  constructor(id, data) {
-    this._id = id;
+
+/**Constructor Pattern - User
+ * @constructor
+ * @param {string} userId
+ * @param {object} data  contains all user data
+ */
+export class User {
+  constructor(userId, data) {
+    this._id = userId;
     this._data = data;
   }
-  getId() {
-    return this._id;
-  }
+  /**
+   * Gets FirstName from initial data
+   *
+   * @return  {string}  FirstName
+   */
   get _firstName() {
     let firstName = 'unknown user';
     USER_MAIN_DATA.forEach((user) => {
@@ -16,6 +25,12 @@ class User {
     });
     return firstName;
   }
+
+  /**
+   * Formats User keyData from initial data
+   *
+   * @return  {{nutriments: Array, values: Array}   { nutriments, values }
+   */
   get _keyData() {
     const nutriments = ['Calories', 'Protéines', 'Glucides', 'Lipides'];
     let values = new Array(5);
@@ -29,4 +44,3 @@ class User {
     return { nutriments, values };
   }
 }
-export default User;

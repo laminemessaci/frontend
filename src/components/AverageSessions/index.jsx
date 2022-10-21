@@ -1,4 +1,6 @@
+// @ts-nocheck
 import PropTypes from 'prop-types';
+import React from 'react';
 import {
   Line,
   LineChart,
@@ -15,6 +17,14 @@ import {
   TooltipContainer,
 } from './index.styles.js';
 
+/**
+ * Component for showing  average sessions in a chart
+ *
+ * @component AverageSessionsChart
+ * @param   {string}  userId  User Id
+ * @param   {Object}  data   all User data
+ * @return {JSX.Element}
+ */
 export function AverageSessionsChart({ userId, data }) {
   const sessions = new SessionsAverage(userId, data.userAverageSession)
     ._sessions;
