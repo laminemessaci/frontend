@@ -17,7 +17,7 @@
   "opts": {
     "destination": "docs",
     "recurse": true,
-    "template": "./default",
+    "template": "./template",
     "readme": "README.md"
   }
 }
