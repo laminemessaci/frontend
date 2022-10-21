@@ -1,3 +1,4 @@
+import React from 'react';
 import { icons } from '../../constants/index.js';
 import {
   HeaderContainer,
@@ -6,6 +7,13 @@ import {
   LinkedList,
   Logo,
 } from './index.styles.js';
+
+/**
+ * Header component app
+ *
+ * @component Header
+ * @return {JSX.Element}
+ */
 
 export function Header() {
   return (

@@ -1,21 +1,22 @@
-import PropTypes from "prop-types";
-import { icons_type_infos, icons_unit_infos } from "../../constants/index.js";
+// @ts-nocheck
+import PropTypes from 'prop-types';
+import React from 'react';
+import { icons_type_infos, icons_unit_infos } from '../../constants/index.js';
 import {
   IconContainer,
   IconInfos,
   IconInfoType,
   IconInfoValue,
-} from "./index.styles.js";
+} from './index.styles.js';
 
 /**
- **Macronutrient
+ * Micronutrient
  * @param   {string}  type   type of nutriment
- * @param   {[type]}  value  value of nutriment
+ * @param   {number}  value  value of nutriment
  *
  * @return {JSX.Element}
  */
-function IconComponent({ type, value }) {
-  
+const IconComponent = ({ type, value }) => {
   return (
     <IconContainer>
       <img src={icons_type_infos[type]} alt={type} width="60" height="60" />
@@ -27,7 +28,7 @@ function IconComponent({ type, value }) {
       </IconInfos>
     </IconContainer>
   );
-}
+};
 
 IconComponent.propTypes = {
   type: PropTypes.string.isRequired,

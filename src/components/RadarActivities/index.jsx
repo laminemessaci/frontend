@@ -1,4 +1,6 @@
+// @ts-nocheck
 import PropTypes from 'prop-types';
+import React from 'react';
 import {
   PolarAngleAxis,
   PolarGrid,
@@ -7,10 +9,18 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { theme } from '../../constants';
-import ActivityChart from '../../model/ActivityChart.js';
+import { ActivityChart } from '../../model/ActivityChart.js';
 
 import { RadarContainer } from './index.styles.js';
 
+/**
+ * Component for showing  User Performances
+ *
+ * @component RadarActivities
+ * @param   {string}  userId  User Id
+ * @param   {Object}  data   all User data
+ * @return {JSX.Element}
+ */
 function RadarActivities({ userId, data }) {
   const performances = new ActivityChart(userId, data)._activities;
 
@@ -47,6 +57,7 @@ function RadarActivities({ userId, data }) {
 
 RadarActivities.propTypes = {
   userId: PropTypes.string.isRequired,
+  data: PropTypes.array.isRequired,
 };
 
 export default RadarActivities;

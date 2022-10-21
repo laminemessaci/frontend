@@ -1,5 +1,6 @@
 /**Constructor Pattern - Average session
  * @constructor
+ * @param {string} userId
  * @param {object} data - A average session with a day
  */
 export class SessionsAverage {

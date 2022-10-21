@@ -1,7 +1,13 @@
 import { USER_MAIN_DATA } from './../mock/mockedData';
-class User {
-  constructor(id, data) {
-    this._id = id;
+
+/**Constructor Pattern - User
+ * @constructor
+ * @param {string} userId
+ * @param {object} data  contains all user data
+ */
+export class User {
+  constructor(userId, data) {
+    this._id = userId;
     this._data = data;
   }
   getId() {
@@ -29,4 +35,3 @@ class User {
     return { nutriments, values };
   }
 }
-export default User;

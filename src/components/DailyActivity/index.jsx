@@ -1,3 +1,4 @@
+// @ts-nocheck
 import PropTypes from 'prop-types';
 import {
   Bar,
@@ -19,7 +20,16 @@ import {
 import { theme } from '../../constants/index.js';
 import CustomTooltip from '../CustomTooltip/index.js';
 import { Activity } from '../../model/DailyActivity.js';
+import React from 'react';
 
+/**
+ * Component for showing  Daily Activities
+ *
+ * @component DailyActivity
+ * @param   {string}  userId  User Id
+ * @param   {Object}  data   all User data
+ * @return {JSX.Element}
+ */
 function DailyActivity({ userId, data }) {
   const dailyActivity = new Activity(userId, data?.userActivities)._activities;
 
