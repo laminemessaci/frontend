@@ -66,3 +66,4 @@ dev dependencies:
 ### N.B:
 - _SportSee_ API only contains data for users with id 12 and 18.
 - user 18 has an alternative version of the chart "Sessions average duration", more relevant than the one on the [Figma mock-up](https://www.figma.com/file/BMomGVZqLZb811mDMShpLu/UI-design-Sportify-FR).
+- For more information on the documentation of the code connect on this link: [jsDoc](http://127.0.0.1:5500/docs/index.html).
