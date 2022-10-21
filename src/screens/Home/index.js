@@ -4,6 +4,7 @@ import Switch from 'react-switch';
 import { Header } from '../../components/Header/index.jsx';
 import UserProfile from '../../components/UserProfile/index.js';
 import VerticalNavBar from '../../components/VerticalNavBar/index.jsx';
+import { theme } from '../../constants/index.js';
 import { DashboardContainer, MainContent } from './index.style.js';
 
 function Home() {
@@ -18,8 +19,12 @@ function Home() {
         <VerticalNavBar />
         <MainContent>
           <label>
-            <span>Api</span>
-            <Switch checked={state.checked} onChange={handleChange} />
+            <strong>Api</strong>
+            <Switch
+              checked={state.checked}
+              onChange={handleChange}
+              onColor={theme.colors.primary500}
+            />
           </label>
           <UserProfile />
           <UserProfile />

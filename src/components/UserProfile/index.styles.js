@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from '../../constants/index.js';
 
 export const UserSection = styled.div`
   display: grid;
@@ -16,13 +17,13 @@ export const UserArticle = styled.div`
   font-size: 10px;
 `;
 export const UserName = styled.h2`
-  color: #d3573c;
-  font-size: 36px;
+  color: ${theme.colors.primary500};
+  font-size: 3rem;
   font-weight: normal;
 `;
 export const UserDescription = styled.p`
   font-size: 13px;
-  color: #d3573c;
+  color: ${theme.colors.neutral900};
 `;
 export const UserLink = styled.a`
   display: flex;
@@ -36,7 +37,7 @@ export const UserImage = styled.img`
   width: 200px;
   border-radius: 10em;
   box-shadow: 20px 20px 15px rgba(0, 0, 0, 0.2);
-  border: 10px solid red;
+  border: 10px solid ${theme.colors.neutral900};
   padding: 5px;
   border-image-slice: 10%;
 `;
