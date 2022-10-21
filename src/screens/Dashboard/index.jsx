@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect, useState } from 'react';
 import ReactLoading from 'react-loading';
 import { AverageSessionsChart } from '../../components/AverageSessions';
@@ -37,7 +38,7 @@ function Dashboard() {
 
   const { isLoading, isDataLoaded, data } = state;
 
-  console.log('state: ', data);
+  // console.log('state: ', data);
 
   useEffect(() => {
     async function getMockedData() {

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/Macros/index.jsx</title>
+    <title>JSDoc: Source: navigation/index.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/Macros/index.jsx</h1>
+    <h1 class="page-title">Source: navigation/index.jsx</h1>
 
     
 
@@ -26,40 +26,27 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>// @ts-nocheck
-import PropTypes from 'prop-types';
-import IconComponent from '../IconComponent/index.jsx';
-import { MacroContainer } from './index.styles.js';
-import { User } from '../../model/User.js';
-import React from 'react';
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import Dashboard from '../screens/Dashboard/index.jsx';
+import Page404 from '../screens/Page404/index.jsx';
 
 /**
- * Component that displays a list of Nutrition values
+ * @component Navigation Component
  *
- * @param   {string}  userId  User Id
- * @param   {Object}  data   all User data
- *
- * @return {JSX.Element}
+ * @return  {JSX.Element} Routes
  */
-function Macros({ userId, data }) {
-  // console.log(data);
-  const { nutriments, values } = new User(userId, data)._keyData;
-
+function Navigation() {
   return (
-    &lt;MacroContainer>
-      {nutriments.map((nutriment, index) => (
-        &lt;IconComponent type={nutriment} value={values[index]} key={index} />
-      ))}
-    &lt;/MacroContainer>
+    &lt;Routes>
+      &lt;Route path="/" element={&lt;Navigate to="/dashboard/12" replace />} />
+      &lt;Route path="/dashboard/:userId" element={&lt;Dashboard />} />
+      &lt;Route path="/*" element={&lt;Page404 />} />
+    &lt;/Routes>
   );
 }
 
-Macros.propTypes = {
-  userId: PropTypes.string.isRequired,
-  data: PropTypes.array.isRequired,
-};
-
-export default Macros;
+export default Navigation;
 </code></pre>
         </article>
     </section>

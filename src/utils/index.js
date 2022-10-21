@@ -1,3 +1,4 @@
+// @ts-nocheck
 // export const findPath = (ob, key: string) => {
 //   const path = [];
 //   const keyExists = (obj) => {
@@ -34,6 +35,13 @@
 //   return path.join('.');
 // };
 
+/**
+ * Formats  initial date to good user format
+ *
+ * @param   {Object}  obj
+ *
+ * @return  {{activity: string, value: number}}    results
+ */
 export function formatData(obj) {
   // console.log("obj==> ", obj);
   const results = [];
@@ -43,16 +51,23 @@ export function formatData(obj) {
 
       nbrKind.kind = frenchDatas;
     }
-    console.log('obj', nbrKind);
+    // console.log('obj', nbrKind);
     results.push({
       activity: nbrKind.kind,
       value: nbrKind.value,
     });
   });
-  console.log('Results: ', results);
+  // console.log('Results: ', results);
   return results;
 }
 
+/**
+ * Capitalize and translate to French
+ *
+ * @param   {string}  str
+ *
+ * @return  {string}
+ */
 function translateToFr(str) {
   var performances = {
     energy: capitalizesFirstLetter('energie'),
@@ -67,6 +82,13 @@ function translateToFr(str) {
   return performances[str] || performances['default'];
 }
 
+/**
+ * Capitalize First letter
+ *
+ * @param   {string}  str
+ *
+ * @return  {string}
+ */
 export function capitalizesFirstLetter(str) {
   return str.charAt(0).toUpperCase() + str.substring(1).toLowerCase();
 }

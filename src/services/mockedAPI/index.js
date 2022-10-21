@@ -1,13 +1,11 @@
 import axios from 'axios';
 
-/* A mocked data for testing component app. */
-const datas = '/mockeddatas.json';
-export const getAllDatasMocked = () => {
-  return axios.get(datas).then((response) => response.data);
-};
-
-/* A mocked data for testing component app. */
 const data = '/mockedData.json';
+/**
+ * A mocked data for testing component app.
+ *
+ * @return  {Promise<Object>}  data promise
+ */
 export const getAllDataMocked = () => {
   return axios.get(data).then((response) => response.data);
 };
