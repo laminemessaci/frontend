@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { formatData } from '../utils/index.js';
 
 /**Constructor Pattern - Activities Chart

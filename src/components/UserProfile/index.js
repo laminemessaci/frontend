@@ -9,14 +9,12 @@ import {
   UserSection,
 } from './index.styles.js';
 
-function UserProfile() {
+function UserProfile({ userId, imageSource }) {
   return (
     <UserSection>
-    
-
       <UserArticle>
-        <UserLink href="photographer.html?photographer=${this.id}">
-          <UserImage src="images/EllieRoseWilkens.jpg" alt="photo de profile" />
+        <UserLink href={`dashboard/${userId}`}>
+          <UserImage src={imageSource} />
           <UserName>Marc</UserName>
         </UserLink>
 

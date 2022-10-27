@@ -37,7 +37,7 @@ export const UserImage = styled.img`
   width: 200px;
   border-radius: 10em;
   box-shadow: 20px 20px 15px rgba(0, 0, 0, 0.2);
-  border: 10px solid ${theme.colors.neutral900};
+  border: 10px solid ${theme.colors.primary500};
   padding: 5px;
   border-image-slice: 10%;
 `;

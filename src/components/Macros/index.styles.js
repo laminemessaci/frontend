@@ -14,8 +14,8 @@ export const MacroContainer = styled.div`
   @media (max-width: 968px) {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    justify-content: space-between;
+    gap: 2.5rem;
+    justify-content: center;
   }
   @media (max-width: 788px) {
   }
