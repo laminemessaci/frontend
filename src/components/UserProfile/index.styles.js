@@ -15,15 +15,18 @@ export const UserArticle = styled.div`
   align-items: center;
   flex-direction: column;
   font-size: 10px;
+  a:link {
+    text-decoration: none;
+  }
 `;
 export const UserName = styled.h2`
   color: ${theme.colors.primary500};
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: normal;
 `;
 export const UserDescription = styled.p`
-  font-size: 13px;
-  color: ${theme.colors.neutral900};
+  font-size: 18px;
+  color: ${theme.colors.neutral500};
 `;
 export const UserLink = styled.a`
   display: flex;

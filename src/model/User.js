@@ -8,8 +8,9 @@ import { USER_MAIN_DATA } from './../mock/mockedData';
  */
 export class User {
   constructor(userId, data) {
-    this._id = userId;
+    this._userId = userId;
     this._data = data;
+    console.log('User Data :' + this._data);
   }
   /**
    * Gets FirstName from initial data
@@ -18,12 +19,26 @@ export class User {
    */
   get _firstName() {
     let firstName = 'unknown user';
-    USER_MAIN_DATA.forEach((user) => {
-      if (user.id === parseInt(this._id)) {
+    this._data.userMainData.forEach((user) => {
+      // console.log('condition userId', user.userId);
+      if (user.userId === parseInt(this._userId)) {
         firstName = user.userInfos.firstName;
+        console.log('condition userId', user.todayScore);
       }
     });
+
     return firstName;
+  }
+
+  get _toDayScore() {
+    let score = 0;
+    this._data.userMainData.forEach((user) => {
+      if (user.userId === parseInt(this._userId)) {
+        score = user.todayScore;
+      }
+    });
+
+    return score;
   }
 
   /**
@@ -35,8 +50,8 @@ export class User {
     const nutriments = ['Calories', 'Protéines', 'Glucides', 'Lipides'];
     let values = new Array(5);
     const userData = this._data.forEach((user) => {
-      if (user.userId === parseInt(this._id)) {
-        console.log(user.keyData);
+      if (user.userId === parseInt(this._userId)) {
+        // console.log(user.keyData);
         values = Object.values(user.keyData);
       }
     });

@@ -1,6 +1,5 @@
 // @ts-nocheck
 import React, { useEffect, useState } from 'react';
-import ReactLoading from 'react-loading';
 import { AverageSessionsChart } from '../../components/AverageSessions';
 import DailyActivity from '../../components/DailyActivity';
 import { Header } from '../../components/Header';
@@ -19,6 +18,7 @@ import {
   MainChart,
   MainContent,
 } from './index.style.js';
+import Loader from '../../components/Loader/index.js';
 
 const initialState = {
   isLoading: true,
@@ -41,8 +41,6 @@ function Dashboard() {
   }
 
   const { isLoading, isDataLoaded, data } = state;
-
-  // console.log('state: ', data);
 
   useEffect(() => {
     async function getMockedData() {
@@ -68,7 +66,7 @@ function Dashboard() {
   if (isLoading) {
     return (
       <>
-        <ReactLoading
+        <Loader
           type={'spinningBubbles'}
           color={'#ff6060'}
           width={200}
@@ -88,6 +86,7 @@ function Dashboard() {
               userId={userId}
               message={user_message}
               isLoading={isLoading}
+              data={data}
             />
             <ContentGrid>
               <ChartsGrid>

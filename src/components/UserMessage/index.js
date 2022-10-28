@@ -13,8 +13,8 @@ import { FirstName, Message, Title } from './index.styles.js';
  * @param   {boolean}  isLoading
  * @return {JSX.Element}
  */
-function UserMessage({ userId, message, isLoading }) {
-  const firstName = new User(userId)._firstName || 'unknown user';
+function UserMessage({ userId, message, isLoading, data }) {
+  const firstName = new User(userId, data)._firstName || 'unknown user';
   console.log('first Name:', firstName, isLoading);
   return (
     <>

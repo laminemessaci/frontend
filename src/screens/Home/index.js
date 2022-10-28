@@ -1,23 +1,31 @@
 // @ts-nocheck
 import React, { useEffect, useState } from 'react';
+import ReactLoading from 'react-loading';
 import Switch from 'react-switch';
+
+import { getAllDataMocked } from '../../services/mockedAPI/index.js';
+
 import { Header } from '../../components/Header/index.jsx';
 import UserProfile from '../../components/UserProfile/index.js';
 import VerticalNavBar from '../../components/VerticalNavBar/index.jsx';
 import { theme } from '../../constants/index.js';
-import { DashboardContainer, MainContent } from './index.style.js';
-import { ReactLoading } from 'react-loading';
-import { getAllDataMocked } from '../../services/mockedAPI/index.js';
 
+import { DashboardContainer, MainContent } from './index.style.js';
+import Loader from '../../components/Loader/index.js';
+
+const initialState = {
+  isLoading: true,
+  error: null,
+  data: null,
+  checked: false,
+};
 function Home() {
-  const [state, setState] = useState({ checked: false });
+  const [state, setState] = useState(initialState);
   const handleChange = (checked) => {
     setState({ checked });
   };
 
-  const { isLoading, isDataLoaded, data } = state;
-
-  console.log('userData: ', data);
+  const { isLoading, data, checked } = state;
 
   useEffect(() => {
     async function getMockedData() {
@@ -27,7 +35,7 @@ function Home() {
         setState({
           ...state,
           data: userData,
-          isDataLoaded: true,
+
           error: '',
           isLoading: false,
         });
@@ -36,14 +44,12 @@ function Home() {
       }
     }
     getMockedData();
-    setState({ ...state, isLoading: false });
-    console.log('state: ', state);
-  }, []);
+  }, [checked]);
 
   if (isLoading) {
     return (
       <>
-        <ReactLoading
+        <Loader
           type={'spinningBubbles'}
           color={'#ff6060'}
           width={200}
@@ -72,6 +78,8 @@ function Home() {
               key={user.userId}
               userId={user.userId}
               imageSource={`/images/${user.userInfos.firstName}.jpg`}
+              api={checked}
+              data={user}
             />
           ))}
         </MainContent>

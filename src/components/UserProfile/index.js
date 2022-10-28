@@ -1,5 +1,6 @@
 // @ts-nocheck
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import {
   UserArticle,
   UserDescription,
@@ -9,19 +10,36 @@ import {
   UserSection,
 } from './index.styles.js';
 
-function UserProfile({ userId, imageSource }) {
+/**
+ * Component for showing  User profile
+ *
+ * @component UserProfile
+ * @param   {string}  userId  User Id
+ * @param   {string}  imageSource
+ * @return {JSX.Element}
+ */
+function UserProfile({ userId, imageSource, data, api }) {
   return (
     <UserSection>
       <UserArticle>
         <UserLink href={`dashboard/${userId}`}>
           <UserImage src={imageSource} />
-          <UserName>Marc</UserName>
+          <UserName>
+            {api
+              ? data?.userInfos?.firstName.split('Mocked')
+              : data?.userInfos?.firstName}
+          </UserName>
         </UserLink>
 
-        <UserDescription>test</UserDescription>
+        <UserDescription>{data?.userInfos?.age} ans</UserDescription>
       </UserArticle>
     </UserSection>
   );
 }
+
+UserProfile.propTypes = {
+  userId: PropTypes.number.isRequired,
+  imageSource: PropTypes.string.isRequired,
+};
 
 export default UserProfile;
