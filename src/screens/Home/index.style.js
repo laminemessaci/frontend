@@ -14,3 +14,15 @@ export const MainContent = styled.section`
     padding: 1.5rem 2rem;
   }
 `;
+
+export const LabelContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+`;
+export const ApiText = styled.span`
+  justify-content: space-between;
+  font-size: 1.4rem;
+  font-weight: bold;
+`;

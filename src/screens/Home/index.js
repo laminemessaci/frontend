@@ -10,7 +10,12 @@ import UserProfile from '../../components/UserProfile/index.js';
 import VerticalNavBar from '../../components/VerticalNavBar/index.jsx';
 import { theme } from '../../constants/index.js';
 
-import { DashboardContainer, MainContent } from './index.style.js';
+import {
+  ApiText,
+  DashboardContainer,
+  LabelContainer,
+  MainContent,
+} from './index.style.js';
 import Loader from '../../components/Loader/index.js';
 
 const initialState = {
@@ -65,14 +70,16 @@ function Home() {
       <DashboardContainer>
         <VerticalNavBar />
         <MainContent>
-          <label>
-            <strong>Api</strong>
-            <Switch
-              checked={state.checked}
-              onChange={handleChange}
-              onColor={theme.colors.primary500}
-            />
-          </label>
+          <LabelContainer>
+            <label>
+              <ApiText>Api</ApiText>
+              <Switch
+                checked={state.checked}
+                onChange={handleChange}
+                onColor={theme.colors.primary500}
+              />
+            </label>
+          </LabelContainer>
           {data?.userMainData.map((user) => (
             <UserProfile
               key={user.userId}
