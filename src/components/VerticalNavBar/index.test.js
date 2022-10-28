@@ -1,12 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import VerticalNavBar from './';
 
-describe('GIVEN a user on a page with the vertical AsideNav', () => {
-  beforeEach(() => {
-    render(<VerticalNavBar />);
-  });
+const setup = () => render(<VerticalNavBar />);
 
+describe('GIVEN a user on a page with the vertical AsideNav', () => {
   test('THEN there is a navigation with a list containing 4 lisitems for the secondary links', () => {
+    setup();
     const navElement = screen.getByRole('navigation');
     expect(navElement).toBeTruthy();
 
@@ -19,12 +18,14 @@ describe('GIVEN a user on a page with the vertical AsideNav', () => {
   });
 
   test('THEN the AsideNav contains 4 links', () => {
+    setup();
     const links = screen.getAllByRole('link');
 
     expect(links.length).toBe(4);
   });
 
   test('THEN there are 4 activity pictograms with an alt Text', () => {
+    setup();
     const firstActivity = screen.getByAltText(/Méditation/i);
     expect(firstActivity).toBeTruthy();
 
@@ -39,6 +40,7 @@ describe('GIVEN a user on a page with the vertical AsideNav', () => {
   });
 
   test('THEN a copyright is visible', () => {
+    setup();
     const brandName = screen.getByText(/SportSee/);
     expect(brandName).toBeTruthy();
 
