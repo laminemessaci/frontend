@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: model/Score.js</title>
+    <title>JSDoc: Source: components/Loader/index.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: model/Score.js</h1>
+    <h1 class="page-title">Source: components/Loader/index.js</h1>
 
     
 
@@ -26,52 +26,37 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { theme } from '../constants/index.js';
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import ReactLoading from 'react-loading';
+import { LoaderContainer } from './index.styles.js';
+import { PropTypes } from 'prop-types';
 
-/**Constructor Pattern - Score
- * @constructor
- * @param {object} score - A score
+/**
+ * Component that displays a Loader
+ *
+ * @param   {string}  type   type of  loader
+ * @param   {string}  color  loader color
+ * @param   {string}  width   Dimensions
+ * @param   {string}  height  Dimensions
+ *
+ * @return {JSX.Element}
  */
-export class Score {
-  constructor(userId, data) {
-    this._userId = userId;
-    this._data = data.userMainData;
-  }
-
-  /**
-   * Get the name
-   *
-   * @return  {string} name
-   */
-  get name() {
-    return 'score';
-  }
-
-  /**
-   * Get  user score
-   *
-   * @return  {number} score number
-   */
-  get score() {
-    let score = 0;
-    this._data.forEach((element) => {
-      if (element.userId === parseInt(this._userId)) {
-        score = element.todayScore;
-      }
-    });
-    //console.log('score::', score);
-    return score;
-  }
-
-  /**
-   * Get color
-   *
-   * @return  {string}
-   */
-  get fill() {
-    return `${theme.colors.primary500}`;
-  }
+function Loader({ type, color, width, height }) {
+  return (
+    &lt;LoaderContainer>
+      &lt;ReactLoading type={type} color={color} width={width} height={height} />
+    &lt;/LoaderContainer>
+  );
 }
+
+Loader.propTypes = {
+  type: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
+  width: PropTypes.any || 200,
+  height: PropTypes.any || 200,
+};
+
+export default Loader;
 </code></pre>
         </article>
     </section>

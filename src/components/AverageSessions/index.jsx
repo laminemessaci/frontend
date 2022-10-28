@@ -62,7 +62,7 @@ export function AverageSessionsChart({ userId, data }) {
           />
           <Line
             dataKey="sessionLength"
-            // type={`${userId === "18" ? "step" : "monotone"}`}
+            type={`${userId === '18' ? 'step' : 'monotone'}`}
             stroke="rgba(255, 255, 255, 0.6)"
             strokeWidth={2}
             dot={false}

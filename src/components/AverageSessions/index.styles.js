@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { theme } from "../../constants/index.js";
+import styled from 'styled-components';
+import { theme } from '../../constants/index.js';
 
 export const AverageSessionsContainer = styled.div`
   position: relative;
@@ -26,4 +26,5 @@ export const TooltipContainer = styled.p`
   font-size: 0.7rem;
   font-weight: 500;
   background: white;
+  margin: 0;
 `;
