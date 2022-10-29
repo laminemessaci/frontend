@@ -100,6 +100,7 @@ function DailyActivity({ userId, data }) {
             radius={[50, 50, 0, 0]}
           />
           <Tooltip
+            wrapperStyle={{ outlineStyle: 'none' }}
             content={<CustomTooltip />}
             cursor={{
               fill: 'rgba(0, 0, 0, 0.1)',

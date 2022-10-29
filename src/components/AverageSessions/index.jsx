@@ -74,6 +74,7 @@ export function AverageSessionsChart({ userId, data }) {
           />
           <Tooltip
             content={<CustomTooltip />}
+            wrapperStyle={{ outlineStyle: 'none' }}
             cursor={{
               stroke: 'rgba(0, 0, 0, 0.1)',
               strokeWidth: 32,
