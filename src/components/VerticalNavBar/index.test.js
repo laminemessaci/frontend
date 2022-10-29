@@ -44,7 +44,7 @@ describe('GIVEN a user on a page with the vertical AsideNav', () => {
     const brandName = screen.getByText(/SportSee/);
     expect(brandName).toBeTruthy();
 
-    const copyright = screen.getByText(/Copyright|Tous droits réservés/i);
+    const copyright = screen.getByText(/Copyright/i);
     expect(copyright).toBeTruthy();
   });
 });

@@ -2,6 +2,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { icons_type_infos, icons_unit_infos } from '../../constants/index.js';
+import { toFrenchIntegerFormat } from '../../utils/index.js';
 import {
   IconContainer,
   IconInfos,
@@ -22,9 +23,11 @@ const IconComponent = ({ type, value }) => {
       <img src={icons_type_infos[type]} alt={type} width="60" height="60" />
 
       <IconInfos>
-        <IconInfoValue>{`${value} ${icons_unit_infos[type]}`}</IconInfoValue>
+        <IconInfoValue data-testid="card-measure">{`${toFrenchIntegerFormat(
+          value
+        )} ${icons_unit_infos[type]}`}</IconInfoValue>
 
-        <IconInfoType>{type}</IconInfoType>
+        <IconInfoType data-testid="card-type">{type}</IconInfoType>
       </IconInfos>
     </IconContainer>
   );
