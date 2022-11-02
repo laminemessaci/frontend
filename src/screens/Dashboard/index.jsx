@@ -18,7 +18,11 @@ import {
   MainChart,
   MainContent,
 } from './index.style.js';
+<<<<<<< Updated upstream
 import Loader from '../../components/Loader/index.js';
+=======
+import { getAllData } from '../../services/hook/index.js';
+>>>>>>> Stashed changes
 
 const initialState = {
   isLoading: true,
@@ -32,6 +36,8 @@ const initialState = {
  */
 
 function Dashboard() {
+  const datas = getAllData();
+  console.log('datat====> ', datas);
   const [state, setState] = useState(initialState);
 
   const { userId } = useParams();
