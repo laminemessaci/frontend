@@ -43,7 +43,7 @@ import { FirstName, Message, Title } from './index.styles.js';
  */
 function UserMessage({ userId, message, isLoading, data }) {
   const firstName = new User(userId, data)._firstName || 'unknown user';
-  console.log('first Name:', firstName, isLoading);
+ // console.log('first Name:', firstName, isLoading);
   return (
     &lt;>
       &lt;Title>

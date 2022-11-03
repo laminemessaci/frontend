@@ -18,11 +18,8 @@ import {
   MainChart,
   MainContent,
 } from './index.style.js';
-<<<<<<< Updated upstream
-import Loader from '../../components/Loader/index.js';
-=======
-import { getAllData } from '../../services/hook/index.js';
->>>>>>> Stashed changes
+import { useSportSeeApi } from '../../services/hook/index.js';
+import Loader from './../../components/Loader/index';
 
 const initialState = {
   isLoading: true,
@@ -36,17 +33,29 @@ const initialState = {
  */
 
 function Dashboard() {
-  const datas = getAllData();
-  console.log('datat====> ', datas);
   const [state, setState] = useState(initialState);
 
   const { userId } = useParams();
+
+  const {
+    userApi,
+    sessionsApi,
+    performancesApi,
+    averageApi,
+    isApiLoading,
+    errorApi,
+  } = useSportSeeApi(userId);
+  // console.log('userApi :', userApi);
+  // console.log('sessionsApi :', sessionsApi);
+  // console.log('pefApi :', performancesApi);
+  // console.log('averageApi :', averageApi);
+
   const navigate = useNavigate();
   if (!['12', '18'].includes(userId)) {
     navigate('/Page404');
   }
 
-  const { isLoading, isDataLoaded, data } = state;
+  const { isLoading, isDataLoaded, data: mockedData } = state;
 
   useEffect(() => {
     async function getMockedData() {
@@ -92,18 +101,18 @@ function Dashboard() {
               userId={userId}
               message={user_message}
               isLoading={isLoading}
-              data={data}
+              data={mockedData}
             />
             <ContentGrid>
               <ChartsGrid>
                 <MainChart>
-                  <DailyActivity userId={userId} data={data} />
+                  <DailyActivity userId={userId} data={mockedData} />
                 </MainChart>
-                <AverageSessionsChart userId={userId} data={data} />
-                <RadarActivities userId={userId} data={data} />
-                <Score userId={userId} data={data} />
+                <AverageSessionsChart userId={userId} data={mockedData} />
+                <RadarActivities userId={userId} data={mockedData} />
+                <Score userId={userId} data={mockedData} />
               </ChartsGrid>
-              <Macros userId={userId} data={data.userMainData} />
+              <Macros userId={userId} data={mockedData.userMainData} />
             </ContentGrid>
           </MainContent>
         </DashboardContainer>

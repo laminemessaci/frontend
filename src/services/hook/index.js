@@ -1,33 +1,58 @@
 import axios from 'axios';
-const baseUrl = 'http://localhost:5000/user/';
+import { useState } from 'react';
+import { useEffect } from 'react';
+
+import { END_POINTS } from '../../constants';
+
 /**
- * Fetch All User data from all endpoints
- * from all four endpoints
- *
- * @param   {Number}  id  The user id
- *
- * @return  {Promise} Return user data
+ * Hook used to extract data from SportSeeAPI to feed the dashboard.
+ * @param {string} service
+ * @param {string} userId
+ * @returns {undefined|Object}
  */
-export const getAllData = async (id) => {
-  const endPoints = [
-    `${baseUrl}${id}`,
-    `${baseUrl}${id}/activity`,
-    `${baseUrl}${id}/average-sessions`,
-    `${baseUrl}${id}/performance`,
-  ];
-  return axios
-    .all(endPoints.map((endPoint) => axios.get(endPoint)))
-    .then(
-      axios.spread((user, activity, average, perf) => {
-        JSON.stringify(user);
-        JSON.stringify(activity);
-        JSON.stringify(average);
-        JSON.stringify(perf);
-        return { user, activity, average, perf };
-      })
-    )
-    .catch((error) => {
-      localStorage.setItem('error', error.message);
-      throw new Error(error);
-    });
-};
+export function useSportSeeApi(userId) {
+  const [apiData, setData] = useState({});
+  const [isApiLoading, setIsLoading] = useState(true);
+  const [errorApi, setError] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        axios
+          .all(END_POINTS(userId).map((endPoint) => axios.get(endPoint)))
+          .then(
+            axios.spread((user, activity, average, perf) => {
+              JSON.stringify(user);
+              JSON.stringify(activity);
+              JSON.stringify(average);
+              JSON.stringify(perf);
+              return { user, activity, average, perf };
+            })
+          )
+          .then((results) => setData(results));
+      } catch (error) {
+        setError(true);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const { activity, user, perf, average } = apiData;
+
+  const sessionsApi = activity?.data?.data;
+  const performancesApi = perf?.data?.data;
+  const userApi = user?.data?.data;
+  const averageApi = average?.data?.data;
+  return {
+    userApi,
+    sessionsApi,
+    performancesApi,
+    averageApi,
+    isApiLoading,
+    errorApi,
+  };
+}

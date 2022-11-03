@@ -1,5 +1,4 @@
 // @ts-nocheck
-import { USER_MAIN_DATA } from './../mock/mockedData';
 
 /**Constructor Pattern - User
  * @constructor
@@ -10,7 +9,7 @@ export class User {
   constructor(userId, data) {
     this._userId = userId;
     this._data = data;
-    console.log('User Data :' + this._data);
+    //console.log('User Data :' + this._data);
   }
   /**
    * Gets FirstName from initial data
@@ -23,7 +22,7 @@ export class User {
       // console.log('condition userId', user.userId);
       if (user.userId === parseInt(this._userId)) {
         firstName = user.userInfos.firstName;
-        console.log('condition userId', user.todayScore);
+        //console.log('condition userId', user.todayScore);
       }
     });
 

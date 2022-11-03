@@ -14,7 +14,7 @@ export class SessionsAverage {
   constructor(userId, data) {
     this._userId = userId;
     this._data = data;
-    console.log('sessions  ' + data);
+    // console.log('sessions  ' + data);
   }
 
   /**
