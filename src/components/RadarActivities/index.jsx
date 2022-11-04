@@ -21,15 +21,17 @@ import { RadarContainer } from './index.styles.js';
  * @param   {Object}  data   all User data
  * @return {JSX.Element}
  */
-function RadarActivities({ userId, data }) {
+function RadarActivities({ userId, data, api = false, performancesApi }) {
   const performances = new ActivityChart(userId, data)._activities;
+  const performances_Api = new ActivityChart(userId, data, performancesApi)
+    ._activitiesApi;
 
-  console.log('Performances ==> ', performances);
+  console.log('Performances ==> ', performances_Api);
   return (
     <RadarContainer>
       <ResponsiveContainer width="100%" height="100%">
         <RadarChart
-          data={performances}
+          data={api ? performances_Api : performances}
           outerRadius={window.innerWidth > 1340 ? '70%' : '60%'}
         >
           <PolarGrid radialLines={false} />
@@ -58,6 +60,8 @@ function RadarActivities({ userId, data }) {
 RadarActivities.propTypes = {
   userId: PropTypes.string.isRequired,
   data: PropTypes.object.isRequired,
+  api: PropTypes.string,
+  performancesApi: PropTypes.object,
 };
 
 export default RadarActivities;

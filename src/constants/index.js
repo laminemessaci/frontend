@@ -64,7 +64,6 @@ export const user_message =
 export const BASE_URL = 'http://localhost:3000/user/';
 
 export const END_POINTS = (id) => {
- 
   return [
     `${BASE_URL}${id}`,
     `${BASE_URL}${id}/activity`,

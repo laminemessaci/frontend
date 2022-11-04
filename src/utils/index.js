@@ -51,7 +51,6 @@ export function formatData(obj) {
 
       nbrKind.kind = frenchDatas;
     }
-    // console.log('obj', nbrKind);
     results.push({
       activity: nbrKind.kind,
       value: nbrKind.value,
@@ -61,6 +60,8 @@ export function formatData(obj) {
   return results;
 }
 
+
+
 /**
  * Capitalize and translate to French
  *
@@ -68,7 +69,7 @@ export function formatData(obj) {
  *
  * @return  {string}
  */
-function translateToFr(str) {
+export function translateToFr(str) {
   var performances = {
     energy: capitalizesFirstLetter('energie'),
     strength: capitalizesFirstLetter('force'),

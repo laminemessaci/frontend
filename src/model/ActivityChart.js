@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { formatData } from '../utils/index.js';
+import { formatData, translateToFr } from '../utils/index.js';
 
 /**Constructor Pattern - Activities Chart
  * @constructor
@@ -7,10 +7,11 @@ import { formatData } from '../utils/index.js';
  * @param {object} data contains all data
  */
 export class ActivityChart {
-  constructor(userId, data) {
+  constructor(userId, data, dataApi) {
     this._userId = userId;
     this._data = data.userPerformances;
-    //console.log('UserPerf', this._data);
+    console.log('Model::', this._data);
+    this._dataApi = dataApi;
   }
 
   /**
@@ -25,5 +26,9 @@ export class ActivityChart {
       }
     });
     return formatData(result);
+  }
+
+  get _activitiesApi() {
+    return formatData(this._dataApi);
   }
 }

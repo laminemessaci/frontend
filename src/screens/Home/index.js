@@ -22,15 +22,17 @@ const initialState = {
   isLoading: true,
   error: null,
   data: null,
-  checked: false,
 };
-function Home() {
+const Home = () => {
   const [state, setState] = useState(initialState);
-  const handleChange = (checked) => {
-    setState({ checked });
-  };
 
-  const { isLoading, data, checked } = state;
+  const { isLoading, data } = state;
+
+  const [checked, setChecked] = useState(false);
+
+  const handleChange = (prev) => {
+    setChecked(prev, !prev);
+  };
 
   useEffect(() => {
     async function getMockedData() {
@@ -49,7 +51,7 @@ function Home() {
       }
     }
     getMockedData();
-  }, [checked]);
+  }, []);
 
   if (isLoading) {
     return (
@@ -74,7 +76,7 @@ function Home() {
             <label>
               <ApiText>Api</ApiText>
               <Switch
-                checked={state.checked}
+                checked={checked}
                 onChange={handleChange}
                 onColor={theme.colors.primary500}
               />
@@ -85,14 +87,14 @@ function Home() {
               key={user.userId}
               userId={user.userId}
               imageSource={`/images/${user.userInfos.firstName}.jpg`}
-              api={checked}
               data={user}
+              api={checked}
             />
           ))}
         </MainContent>
       </DashboardContainer>
     </>
   );
-}
+};
 
 export default Home;

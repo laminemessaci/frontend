@@ -6,10 +6,11 @@
  * @param {object} data  contains all user data
  */
 export class User {
-  constructor(userId, data) {
+  constructor(userId, data, dataApi) {
     this._userId = userId;
     this._data = data;
-    //console.log('User Data :' + this._data);
+    this._dataApi = dataApi;
+    console.log('User Data :' + this._dataApi);
   }
   /**
    * Gets FirstName from initial data
@@ -56,5 +57,14 @@ export class User {
     });
 
     return { nutriments, values };
+  }
+
+  get _keyDataApi() {
+    const nutrimentsApi = ['Calories', 'Protéines', 'Glucides', 'Lipides'];
+    let valuesApi = new Array(5);
+
+    valuesApi = Object.values(this._dataApi);
+
+    return { nutrimentsApi, valuesApi };
   }
 }

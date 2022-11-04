@@ -13,29 +13,32 @@ import { END_POINTS } from '../../constants';
 export function useSportSeeApi(userId) {
   const [apiData, setData] = useState({});
   const [isApiLoading, setIsLoading] = useState(true);
-  const [errorApi, setError] = useState(false);
+  const [errorApi, setErrorApi] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        axios
-          .all(END_POINTS(userId).map((endPoint) => axios.get(endPoint)))
-          .then(
-            axios.spread((user, activity, average, perf) => {
-              JSON.stringify(user);
-              JSON.stringify(activity);
-              JSON.stringify(average);
-              JSON.stringify(perf);
-              return { user, activity, average, perf };
-            })
-          )
-          .then((results) => setData(results));
-      } catch (error) {
-        setError(true);
-      } finally {
-        setIsLoading(false);
-      }
+      setErrorApi('');
+      axios
+        .all(END_POINTS(userId).map((endPoint) => axios.get(endPoint)))
+        .then(
+          axios.spread((user, activity, average, perf) => {
+            JSON.stringify(user);
+            JSON.stringify(activity);
+            JSON.stringify(average);
+            JSON.stringify(perf);
+            return { user, activity, average, perf };
+          })
+        )
+        .then((results) => {
+          setData(results);
+          setIsLoading(false);
+          setErrorApi(null);
+        })
+        .catch((error) => {
+          setIsLoading(false);
+          setErrorApi(error.message);
+          throw new Error(error);
+        });
     };
 
     fetchData();

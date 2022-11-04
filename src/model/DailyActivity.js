@@ -5,9 +5,10 @@
  * @param {object} data contains all data
  */
 export class Activity {
-  constructor(userId, data) {
+  constructor(userId, data, dataApi) {
     this._userId = userId;
     this._data = data;
+    this._dataApi = dataApi;
   }
 
   /**
@@ -33,6 +34,19 @@ export class Activity {
         // console.log('dayly activities ::', dailyActivity);
       }
     }
+    return dailyActivity;
+  }
+
+  get _activitiesApi() {
+    const dailyActivity = [];
+    this._dataApi.map((item) => {
+      const [yyyy, mm, dd] = item.day.split('-');
+      dailyActivity.push({
+        day: `${dd}/${mm}`,
+        kilogram: item.kilogram,
+        calories: item.calories,
+      });
+    });
     return dailyActivity;
   }
 }

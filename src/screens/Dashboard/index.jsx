@@ -35,7 +35,8 @@ const initialState = {
 function Dashboard() {
   const [state, setState] = useState(initialState);
 
-  const { userId } = useParams();
+  const { userId, api } = useParams();
+  console.log('UseParams ::', api, userId);
 
   const {
     userApi,
@@ -45,17 +46,20 @@ function Dashboard() {
     isApiLoading,
     errorApi,
   } = useSportSeeApi(userId);
-  // console.log('userApi :', userApi);
-  // console.log('sessionsApi :', sessionsApi);
-  // console.log('pefApi :', performancesApi);
-  // console.log('averageApi :', averageApi);
+  console.log('userApi :', userApi);
+  console.log('sessionsApi :', sessionsApi);
+  console.log('pefApi :', performancesApi);
+  console.log('averageApi :', averageApi);
+  console.log('isApiLoading  ', isApiLoading, errorApi);
+
+  console.log('path: ', window.location.href);
 
   const navigate = useNavigate();
   if (!['12', '18'].includes(userId)) {
     navigate('/Page404');
   }
 
-  const { isLoading, isDataLoaded, data: mockedData } = state;
+  const { isLoading, isDataLoaded, data: mockedData, error } = state;
 
   useEffect(() => {
     async function getMockedData() {
@@ -78,7 +82,7 @@ function Dashboard() {
     console.log('state: ', state);
   }, []);
 
-  if (isLoading) {
+  if (isLoading || isApiLoading) {
     return (
       <>
         <Loader
@@ -88,6 +92,26 @@ function Dashboard() {
           height={200}
         />
       </>
+    );
+  }
+  if (errorApi || error) {
+    return (
+      <div>
+        <Header />
+        <DashboardContainer>
+          <VerticalNavBar />
+          <MainContent>
+            <UserMessage
+              userId={userId}
+              message={
+                api ? errorApi : ' ): quelque chose ne tourne pas rond !'
+              }
+              isLoading={isLoading}
+              data={mockedData}
+            />
+          </MainContent>
+        </DashboardContainer>
+      </div>
     );
   }
   if (isDataLoaded) {
@@ -102,17 +126,44 @@ function Dashboard() {
               message={user_message}
               isLoading={isLoading}
               data={mockedData}
+              api={api}
+              userApi={userApi}
             />
             <ContentGrid>
               <ChartsGrid>
                 <MainChart>
-                  <DailyActivity userId={userId} data={mockedData} />
+                  <DailyActivity
+                    userId={userId}
+                    data={mockedData}
+                    dailyActivityApi={sessionsApi?.sessions}
+                    api={api}
+                  />
                 </MainChart>
-                <AverageSessionsChart userId={userId} data={mockedData} />
-                <RadarActivities userId={userId} data={mockedData} />
-                <Score userId={userId} data={mockedData} />
+                <AverageSessionsChart
+                  userId={userId}
+                  data={mockedData}
+                  averageApi={averageApi}
+                  api={api}
+                />
+                <RadarActivities
+                  userId={userId}
+                  data={mockedData}
+                  performancesApi={performancesApi}
+                  api={api}
+                />
+                <Score
+                  userId={userId}
+                  data={mockedData}
+                  userApiScore={userApi.score}
+                  api={api}
+                />
               </ChartsGrid>
-              <Macros userId={userId} data={mockedData.userMainData} />
+              <Macros
+                userId={userId}
+                data={mockedData.userMainData}
+                keyData={userApi?.keyData}
+                api={api}
+              />
             </ContentGrid>
           </MainContent>
         </DashboardContainer>
