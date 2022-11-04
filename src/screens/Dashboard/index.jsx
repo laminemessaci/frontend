@@ -46,13 +46,13 @@ function Dashboard() {
     isApiLoading,
     errorApi,
   } = useSportSeeApi(userId);
-  console.log('userApi :', userApi);
-  console.log('sessionsApi :', sessionsApi);
-  console.log('pefApi :', performancesApi);
-  console.log('averageApi :', averageApi);
-  console.log('isApiLoading  ', isApiLoading, errorApi);
+  // console.log('userApi :', userApi);
+  // console.log('sessionsApi :', sessionsApi);
+  // console.log('pefApi :', performancesApi);
+  // console.log('averageApi :', averageApi);
+  // console.log('isApiLoading  ', isApiLoading, errorApi);
 
-  console.log('path: ', window.location.href);
+  // console.log('path: ', window.location.href);
 
   const navigate = useNavigate();
   if (!['12', '18'].includes(userId)) {
