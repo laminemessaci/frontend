@@ -4,6 +4,7 @@
  * @constructor
  * @param {string} userId
  * @param {object} data  contains all user data
+ * @param {object} dataApi contains data from Api
  */
 export class User {
   constructor(userId, data, dataApi) {
@@ -30,6 +31,11 @@ export class User {
     return firstName;
   }
 
+  /**
+   * Gets FirstName from initial data
+   *
+   * @return  {string}  FirstName
+   */
   get _toDayScore() {
     let score = 0;
     this._data.userMainData.forEach((user) => {
@@ -59,6 +65,11 @@ export class User {
     return { nutriments, values };
   }
 
+  /**
+   * Formats User keyData from Api
+   *
+   * @return  {{nutriments: Array, values: Array}   { nutriments, values }
+   */
   get _keyDataApi() {
     const nutrimentsApi = ['Calories', 'Protéines', 'Glucides', 'Lipides'];
     let valuesApi = new Array(5);

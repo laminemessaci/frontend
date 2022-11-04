@@ -16,6 +16,8 @@ import {
  * @component UserProfile
  * @param   {string}  userId  User Id
  * @param   {string}  imageSource
+ * @param   {boolean}  api   is Api available?
+ * @param   {Object}  data   User data from Api
  * @return {JSX.Element}
  */
 function UserProfile({ userId, imageSource, data, api }) {

@@ -11,6 +11,8 @@ import { FirstName, Message, Title } from './index.styles.js';
  * @param   {string}  userId  User Id
  * @param   {string}  message    message
  * @param   {boolean}  isLoading
+ * @param   {boolean}  api   is Api available?
+ * @param   {Object}  userApi   User data from Api
  * @return {JSX.Element}
  */
 function UserMessage({

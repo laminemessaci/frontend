@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/ScoreUser/index.js</title>
+    <title>JSDoc: Source: services/hook/index.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/ScoreUser/index.js</h1>
+    <h1 class="page-title">Source: services/hook/index.js</h1>
 
     
 
@@ -26,88 +26,67 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>// @ts-nocheck
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts';
+            <pre class="prettyprint source linenums"><code>import axios from 'axios';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
-import {
-  ScoreContainer,
-  ScoreLabel,
-  ScoreTitle,
-  ScoreValue,
-} from './index.styles.js';
-import { Score } from '../../model/Score.js';
-import { theme } from '../../constants';
+import { END_POINTS } from '../../constants';
 
 /**
- * Component for showing  User score
- *
- * @component ScoreUser
- * @param   {string}  userId  User Id
- * @param   {Object}  data   all User data
- * @return {JSX.Element}
+ * Hook used to extract data from SportSeeAPI to feed the dashboard.
+ * @param {string} service
+ * @param {string} userId
+ * @returns {undefined|Object}
  */
-function ScoreUser({ userId, data, api = false, userApiScore }) {
-  const scoreData = new Score(userId, data);
-  const scoreDataApi = new Score(userId, data, userApiScore);
-  //console.log(scoreData);
-  const pieData = [
-    {
-      name: 'completed',
-      value: api ? scoreDataApi.scoreApi : scoreData.score,
-      fillColor: scoreData.fill,
-    },
-    {
-      name: 'not-completed',
-      value: 1 - scoreData.score,
-      fillColor: `${theme.colors.transparent}`,
-    },
-  ];
+export function useSportSeeApi(userId) {
+  const [apiData, setData] = useState({});
+  const [isApiLoading, setIsLoading] = useState(true);
+  const [errorApi, setErrorApi] = useState(null);
 
-  return (
-    &lt;ScoreContainer>
-      &lt;ScoreTitle>Score&lt;/ScoreTitle>
+  useEffect(() => {
+    const fetchData = async () => {
+      setErrorApi('');
+      axios
+        .all(END_POINTS(userId).map((endPoint) => axios.get(endPoint)))
+        .then(
+          axios.spread((user, activity, average, perf) => {
+            JSON.stringify(user);
+            JSON.stringify(activity);
+            JSON.stringify(average);
+            JSON.stringify(perf);
+            return { user, activity, average, perf };
+          })
+        )
+        .then((results) => {
+          setData(results);
+          setIsLoading(false);
+          setErrorApi(null);
+        })
+        .catch((error) => {
+          setIsLoading(false);
+          setErrorApi(error.message);
+          throw new Error(error);
+        });
+    };
 
-      &lt;ResponsiveContainer width="100%" height="100%">
-        &lt;PieChart width={160} height={160}>
-          &lt;Pie
-            data={pieData}
-            dataKey="value"
-            innerRadius={67}
-            outerRadius={80}
-            startAngle={90}
-            endAngle={450}
-          >
-            {pieData.map((entry, index) => (
-              &lt;Cell
-                key={`cell-${index}`}
-                fill={entry.fillColor}
-                cornerRadius="50%"
-              />
-            ))}
-          &lt;/Pie>
-        &lt;/PieChart>
-      &lt;/ResponsiveContainer>
+    fetchData();
+  }, []);
 
-      &lt;ScoreLabel>
-        &lt;ScoreValue>{100 * scoreData.score}&lt;/ScoreValue>
-        &lt;br />
-        de votre
-        &lt;br />
-        objectif
-      &lt;/ScoreLabel>
-    &lt;/ScoreContainer>
-  );
+  const { activity, user, perf, average } = apiData;
+
+  const sessionsApi = activity?.data?.data;
+  const performancesApi = perf?.data?.data;
+  const userApi = user?.data?.data;
+  const averageApi = average?.data?.data;
+  return {
+    userApi,
+    sessionsApi,
+    performancesApi,
+    averageApi,
+    isApiLoading,
+    errorApi,
+  };
 }
-
-ScoreUser.propTypes = {
-  userId: PropTypes.string.isRequired,
-  data: PropTypes.object.isRequired,
-  api: PropTypes.string,
-  userApiScore: PropTypes.number,
-};
-export default ScoreUser;
 </code></pre>
         </article>
     </section>

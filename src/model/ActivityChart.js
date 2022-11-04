@@ -5,6 +5,7 @@ import { formatData, translateToFr } from '../utils/index.js';
  * @constructor
  * @param {string} userId  userId
  * @param {object} data contains all data
+ * @param {object} dataApi contains data from Api
  */
 export class ActivityChart {
   constructor(userId, data, dataApi) {
@@ -28,6 +29,10 @@ export class ActivityChart {
     return formatData(result);
   }
 
+  /**
+   * Formats data and get the activities for specified user from Api
+   * @return {Array.<Object>} {activity: string, value:number}
+   */
   get _activitiesApi() {
     return formatData(this._dataApi);
   }

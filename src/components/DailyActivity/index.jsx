@@ -28,6 +28,8 @@ import React from 'react';
  * @component DailyActivity
  * @param   {string}  userId  User Id
  * @param   {Object}  data   all User data
+ * @param   {boolean} api   is Api available?
+ * @param  {Object}  dailyActivityApi   User data from Api
  * @return {JSX.Element}
  */
 function DailyActivity({ userId, data, api = false, dailyActivityApi }) {
@@ -120,6 +122,8 @@ function DailyActivity({ userId, data, api = false, dailyActivityApi }) {
 DailyActivity.propTypes = {
   userId: PropTypes.string.isRequired,
   data: PropTypes.object.isRequired,
+  api: PropTypes.bool,
+  dailyActivityApi: PropTypes.object,
 };
 
 export default DailyActivity;

@@ -3,6 +3,8 @@ import { theme } from '../constants/index.js';
 /**Constructor Pattern - Score
  * @constructor
  * @param {object} score - A score
+ * @param {object} data contains Users data
+ * @param {object} dataApi contains data from Api
  */
 export class Score {
   constructor(userId, data, dataApi) {

@@ -19,6 +19,8 @@ import { RadarContainer } from './index.styles.js';
  * @component RadarActivities
  * @param   {string}  userId  User Id
  * @param   {Object}  data   all User data
+ * @param   {boolean}  api   is Api available?
+ * @param   {Object}  performancesApi   User data from Api
  * @return {JSX.Element}
  */
 function RadarActivities({ userId, data, api = false, performancesApi }) {

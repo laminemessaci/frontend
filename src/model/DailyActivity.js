@@ -3,6 +3,7 @@
  * @constructor
  * @param {string} userId  userId
  * @param {object} data contains all data
+ * @param {object} dataApi contains data from Api
  */
 export class Activity {
   constructor(userId, data, dataApi) {
@@ -37,6 +38,11 @@ export class Activity {
     return dailyActivity;
   }
 
+  /**
+   * Formats User daily activities with good formatted date from Api
+   *
+   * @return  {{day:string, kilogram: number, calories: number}}  dailyActivity
+   */
   get _activitiesApi() {
     const dailyActivity = [];
     this._dataApi.map((item) => {

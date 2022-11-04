@@ -3,6 +3,7 @@
  * @constructor
  * @param {string} userId
  * @param {object} data - A average session with a day
+ * @param {object} dataApi contains data from Api
  */
 
 /**Constructor Pattern - Sessions Chart
@@ -43,6 +44,11 @@ export class SessionsAverage {
     return sessions;
   }
 
+  /**
+   * Formats User sessions  provided from Api
+   *
+   * @return  {{day: string, sessionLength:number}}   formatted sessions
+   */
   get _sessionsApi() {
     let sessions = [];
     const days = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];

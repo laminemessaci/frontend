@@ -46,7 +46,8 @@ import {
   MainChart,
   MainContent,
 } from './index.style.js';
-import Loader from '../../components/Loader/index.js';
+import { useSportSeeApi } from '../../services/hook/index.js';
+import Loader from './../../components/Loader/index';
 
 const initialState = {
   isLoading: true,
@@ -62,13 +63,31 @@ const initialState = {
 function Dashboard() {
   const [state, setState] = useState(initialState);
 
-  const { userId } = useParams();
+  const { userId, api } = useParams();
+  console.log('UseParams ::', api, userId);
+
+  const {
+    userApi,
+    sessionsApi,
+    performancesApi,
+    averageApi,
+    isApiLoading,
+    errorApi,
+  } = useSportSeeApi(userId);
+  console.log('userApi :', userApi);
+  console.log('sessionsApi :', sessionsApi);
+  console.log('pefApi :', performancesApi);
+  console.log('averageApi :', averageApi);
+  console.log('isApiLoading  ', isApiLoading, errorApi);
+
+  console.log('path: ', window.location.href);
+
   const navigate = useNavigate();
   if (!['12', '18'].includes(userId)) {
     navigate('/Page404');
   }
 
-  const { isLoading, isDataLoaded, data } = state;
+  const { isLoading, isDataLoaded, data: mockedData, error } = state;
 
   useEffect(() => {
     async function getMockedData() {
@@ -91,7 +110,7 @@ function Dashboard() {
     console.log('state: ', state);
   }, []);
 
-  if (isLoading) {
+  if (isLoading || isApiLoading) {
     return (
       &lt;>
         &lt;Loader
@@ -101,6 +120,26 @@ function Dashboard() {
           height={200}
         />
       &lt;/>
+    );
+  }
+  if (errorApi || error) {
+    return (
+      &lt;div>
+        &lt;Header />
+        &lt;DashboardContainer>
+          &lt;VerticalNavBar />
+          &lt;MainContent>
+            &lt;UserMessage
+              userId={userId}
+              message={
+                api ? errorApi : ' ): quelque chose ne tourne pas rond !'
+              }
+              isLoading={isLoading}
+              data={mockedData}
+            />
+          &lt;/MainContent>
+        &lt;/DashboardContainer>
+      &lt;/div>
     );
   }
   if (isDataLoaded) {
@@ -114,18 +153,45 @@ function Dashboard() {
               userId={userId}
               message={user_message}
               isLoading={isLoading}
-              data={data}
+              data={mockedData}
+              api={api}
+              userApi={userApi}
             />
             &lt;ContentGrid>
               &lt;ChartsGrid>
                 &lt;MainChart>
-                  &lt;DailyActivity userId={userId} data={data} />
+                  &lt;DailyActivity
+                    userId={userId}
+                    data={mockedData}
+                    dailyActivityApi={sessionsApi?.sessions}
+                    api={api}
+                  />
                 &lt;/MainChart>
-                &lt;AverageSessionsChart userId={userId} data={data} />
-                &lt;RadarActivities userId={userId} data={data} />
-                &lt;Score userId={userId} data={data} />
+                &lt;AverageSessionsChart
+                  userId={userId}
+                  data={mockedData}
+                  averageApi={averageApi}
+                  api={api}
+                />
+                &lt;RadarActivities
+                  userId={userId}
+                  data={mockedData}
+                  performancesApi={performancesApi}
+                  api={api}
+                />
+                &lt;Score
+                  userId={userId}
+                  data={mockedData}
+                  userApiScore={userApi.score}
+                  api={api}
+                />
               &lt;/ChartsGrid>
-              &lt;Macros userId={userId} data={data.userMainData} />
+              &lt;Macros
+                userId={userId}
+                data={mockedData.userMainData}
+                keyData={userApi?.keyData}
+                api={api}
+              />
             &lt;/ContentGrid>
           &lt;/MainContent>
         &lt;/DashboardContainer>
@@ -145,13 +211,13 @@ export default Dashboard;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Activity.html">Activity</a></li><li><a href="ActivityChart.html">ActivityChart</a></li><li><a href="Score.html">Score</a></li><li><a href="SessionsAverage.html">SessionsAverage</a></li><li><a href="User.html">User</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AverageSessionsChart">AverageSessionsChart</a></li><li><a href="global.html#capitalizesFirstLetter">capitalizesFirstLetter</a></li><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#DailyActivity">DailyActivity</a></li><li><a href="global.html#formatData">formatData</a></li><li><a href="global.html#getAllDataMocked">getAllDataMocked</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#IconComponent">IconComponent</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#Macros">Macros</a></li><li><a href="global.html#Navigation">Navigation</a></li><li><a href="global.html#RadarActivities">RadarActivities</a></li><li><a href="global.html#ScoreUser">ScoreUser</a></li><li><a href="global.html#toFrenchIntegerFormat">toFrenchIntegerFormat</a></li><li><a href="global.html#translateToFr">translateToFr</a></li><li><a href="global.html#UserMessage">UserMessage</a></li><li><a href="global.html#UserProfile">UserProfile</a></li><li><a href="global.html#VerticalNavBar">VerticalNavBar</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Activity.html">Activity</a></li><li><a href="ActivityChart.html">ActivityChart</a></li><li><a href="Score.html">Score</a></li><li><a href="SessionsAverage.html">SessionsAverage</a></li><li><a href="User.html">User</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AverageSessionsChart">AverageSessionsChart</a></li><li><a href="global.html#capitalizesFirstLetter">capitalizesFirstLetter</a></li><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#DailyActivity">DailyActivity</a></li><li><a href="global.html#formatData">formatData</a></li><li><a href="global.html#getAllDataMocked">getAllDataMocked</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#IconComponent">IconComponent</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#Macros">Macros</a></li><li><a href="global.html#Navigation">Navigation</a></li><li><a href="global.html#RadarActivities">RadarActivities</a></li><li><a href="global.html#ScoreUser">ScoreUser</a></li><li><a href="global.html#toFrenchIntegerFormat">toFrenchIntegerFormat</a></li><li><a href="global.html#translateToFr">translateToFr</a></li><li><a href="global.html#UserMessage">UserMessage</a></li><li><a href="global.html#UserProfile">UserProfile</a></li><li><a href="global.html#useSportSeeApi">useSportSeeApi</a></li><li><a href="global.html#VerticalNavBar">VerticalNavBar</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Sat Oct 29 2022 11:03:22 GMT+0200 (heure d’été d’Europe centrale)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Fri Nov 04 2022 22:06:30 GMT+0100 (heure normale d’Europe centrale)
 </footer>
 
 <script> prettyPrint(); </script>

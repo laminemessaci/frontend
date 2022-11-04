@@ -23,6 +23,8 @@ import {
  * @component AverageSessionsChart
  * @param   {string}  userId  User Id
  * @param   {Object}  data   all User data
+ * @param   {boolean}  api   is Api available?
+ * @param  {Object}  averageApi   User data from Api
  * @return {JSX.Element}
  */
 export function AverageSessionsChart({
@@ -100,6 +102,8 @@ export function AverageSessionsChart({
 AverageSessionsChart.propTypes = {
   userId: PropTypes.string.isRequired,
   data: PropTypes.object.isRequired,
+  api: PropTypes.string,
+  averageApi: PropTypes.object,
 };
 
 function CustomTooltip({ active, payload }) {
