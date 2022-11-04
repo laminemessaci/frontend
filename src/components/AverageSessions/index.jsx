@@ -25,10 +25,21 @@ import {
  * @param   {Object}  data   all User data
  * @return {JSX.Element}
  */
-export function AverageSessionsChart({ userId, data }) {
+export function AverageSessionsChart({
+  userId,
+  data,
+  api = false,
+  averageApi,
+}) {
   const sessions = new SessionsAverage(userId, data.userAverageSession)
     ._sessions;
-  //console.log('sessions: ', data.userAverageSession);
+
+  const sessionsApi = new SessionsAverage(
+    userId,
+    data.userAverageSession,
+    averageApi
+  )._sessionsApi;
+  console.log('averageApi: ', averageApi);
 
   return (
     <AverageSessionsContainer>
@@ -74,6 +85,7 @@ export function AverageSessionsChart({ userId, data }) {
           />
           <Tooltip
             content={<CustomTooltip />}
+            wrapperStyle={{ outlineStyle: 'none' }}
             cursor={{
               stroke: 'rgba(0, 0, 0, 0.1)',
               strokeWidth: 32,

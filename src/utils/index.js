@@ -51,7 +51,6 @@ export function formatData(obj) {
 
       nbrKind.kind = frenchDatas;
     }
-    // console.log('obj', nbrKind);
     results.push({
       activity: nbrKind.kind,
       value: nbrKind.value,
@@ -61,6 +60,8 @@ export function formatData(obj) {
   return results;
 }
 
+
+
 /**
  * Capitalize and translate to French
  *
@@ -68,7 +69,7 @@ export function formatData(obj) {
  *
  * @return  {string}
  */
-function translateToFr(str) {
+export function translateToFr(str) {
   var performances = {
     energy: capitalizesFirstLetter('energie'),
     strength: capitalizesFirstLetter('force'),
@@ -91,4 +92,19 @@ function translateToFr(str) {
  */
 export function capitalizesFirstLetter(str) {
   return str.charAt(0).toUpperCase() + str.substring(1).toLowerCase();
+}
+
+/**
+ * Format an integer with the french dot separator grouping digits by 3.
+ * @param {number} value
+ * @returns {string}
+ */
+export function toFrenchIntegerFormat(value) {
+  value = value.toString();
+
+  if (value.length < 4) {
+    return value;
+  }
+
+  return `${toFrenchIntegerFormat(value.slice(0, -3))}.${value.slice(-3)}`;
 }

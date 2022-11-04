@@ -20,11 +20,16 @@ import { theme } from '../../constants';
  * @param   {Object}  data   all User data
  * @return {JSX.Element}
  */
-function ScoreUser({ userId, data }) {
+function ScoreUser({ userId, data, api = false, userApiScore }) {
   const scoreData = new Score(userId, data);
-  console.log(scoreData);
+  const scoreDataApi = new Score(userId, data, userApiScore);
+  //console.log(scoreData);
   const pieData = [
-    { name: 'completed', value: scoreData.score, fillColor: scoreData.fill },
+    {
+      name: 'completed',
+      value: api ? scoreDataApi.scoreApi : scoreData.score,
+      fillColor: scoreData.fill,
+    },
     {
       name: 'not-completed',
       value: 1 - scoreData.score,
@@ -71,5 +76,7 @@ function ScoreUser({ userId, data }) {
 ScoreUser.propTypes = {
   userId: PropTypes.string.isRequired,
   data: PropTypes.object.isRequired,
+  api: PropTypes.string,
+  userApiScore: PropTypes.number,
 };
 export default ScoreUser;

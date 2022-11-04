@@ -55,7 +55,7 @@ export class User {
     let values = new Array(5);
     const userData = this._data.forEach((user) => {
       if (user.userId === parseInt(this._id)) {
-        console.log(user.keyData);
+       // console.log(user.keyData);
         values = Object.values(user.keyData);
       }
     });

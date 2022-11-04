@@ -5,9 +5,10 @@ import { theme } from '../constants/index.js';
  * @param {object} score - A score
  */
 export class Score {
-  constructor(userId, data) {
+  constructor(userId, data, dataApi) {
     this._userId = userId;
     this._data = data.userMainData;
+    this._dataApi = dataApi;
   }
 
   /**
@@ -35,6 +36,9 @@ export class Score {
     return score;
   }
 
+  get scoreApi() {
+    return this._dataApi;
+  }
   /**
    * Get color
    *

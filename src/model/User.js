@@ -1,5 +1,4 @@
 // @ts-nocheck
-import { USER_MAIN_DATA } from './../mock/mockedData';
 
 /**Constructor Pattern - User
  * @constructor
@@ -7,10 +6,11 @@ import { USER_MAIN_DATA } from './../mock/mockedData';
  * @param {object} data  contains all user data
  */
 export class User {
-  constructor(userId, data) {
+  constructor(userId, data, dataApi) {
     this._userId = userId;
     this._data = data;
-    console.log('User Data :' + this._data);
+    this._dataApi = dataApi;
+    console.log('User Data :' + this._dataApi);
   }
   /**
    * Gets FirstName from initial data
@@ -23,7 +23,7 @@ export class User {
       // console.log('condition userId', user.userId);
       if (user.userId === parseInt(this._userId)) {
         firstName = user.userInfos.firstName;
-        console.log('condition userId', user.todayScore);
+        //console.log('condition userId', user.todayScore);
       }
     });
 
@@ -57,5 +57,14 @@ export class User {
     });
 
     return { nutriments, values };
+  }
+
+  get _keyDataApi() {
+    const nutrimentsApi = ['Calories', 'Protéines', 'Glucides', 'Lipides'];
+    let valuesApi = new Array(5);
+
+    valuesApi = Object.values(this._dataApi);
+
+    return { nutrimentsApi, valuesApi };
   }
 }

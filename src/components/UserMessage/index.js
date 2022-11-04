@@ -13,13 +13,23 @@ import { FirstName, Message, Title } from './index.styles.js';
  * @param   {boolean}  isLoading
  * @return {JSX.Element}
  */
-function UserMessage({ userId, message, isLoading, data }) {
+function UserMessage({
+  userId,
+  message,
+  isLoading,
+  data,
+  api = false,
+  userApi,
+}) {
   const firstName = new User(userId, data)._firstName || 'unknown user';
-  console.log('first Name:', firstName, isLoading);
+
   return (
     <>
       <Title>
-        Bonjour <FirstName>{!isLoading && firstName}</FirstName>
+        Bonjour{' '}
+        <FirstName>
+          {!isLoading && api ? userApi?.userInfos?.firstName : firstName}
+        </FirstName>
       </Title>
       <Message>
         <span>{!isLoading || firstName === 'unknown user' ? message : ''}</span>
@@ -32,6 +42,9 @@ UserMessage.propTypes = {
   userId: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  data: PropTypes.object,
+  api: PropTypes.string,
+  userApi: PropTypes.object,
 };
 
 export default UserMessage;

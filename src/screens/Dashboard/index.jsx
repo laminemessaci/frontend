@@ -18,7 +18,8 @@ import {
   MainChart,
   MainContent,
 } from './index.style.js';
-import Loader from '../../components/Loader/index.js';
+import { useSportSeeApi } from '../../services/hook/index.js';
+import Loader from './../../components/Loader/index';
 
 const initialState = {
   isLoading: true,
@@ -34,13 +35,31 @@ const initialState = {
 function Dashboard() {
   const [state, setState] = useState(initialState);
 
-  const { userId } = useParams();
+  const { userId, api } = useParams();
+  console.log('UseParams ::', api, userId);
+
+  const {
+    userApi,
+    sessionsApi,
+    performancesApi,
+    averageApi,
+    isApiLoading,
+    errorApi,
+  } = useSportSeeApi(userId);
+  console.log('userApi :', userApi);
+  console.log('sessionsApi :', sessionsApi);
+  console.log('pefApi :', performancesApi);
+  console.log('averageApi :', averageApi);
+  console.log('isApiLoading  ', isApiLoading, errorApi);
+
+  console.log('path: ', window.location.href);
+
   const navigate = useNavigate();
   if (!['12', '18'].includes(userId)) {
     navigate('/Page404');
   }
 
-  const { isLoading, isDataLoaded, data } = state;
+  const { isLoading, isDataLoaded, data: mockedData, error } = state;
 
   useEffect(() => {
     async function getMockedData() {
@@ -63,7 +82,7 @@ function Dashboard() {
     console.log('state: ', state);
   }, []);
 
-  if (isLoading) {
+  if (isLoading || isApiLoading) {
     return (
       <>
         <Loader
@@ -73,6 +92,26 @@ function Dashboard() {
           height={200}
         />
       </>
+    );
+  }
+  if (errorApi || error) {
+    return (
+      <div>
+        <Header />
+        <DashboardContainer>
+          <VerticalNavBar />
+          <MainContent>
+            <UserMessage
+              userId={userId}
+              message={
+                api ? errorApi : ' ): quelque chose ne tourne pas rond !'
+              }
+              isLoading={isLoading}
+              data={mockedData}
+            />
+          </MainContent>
+        </DashboardContainer>
+      </div>
     );
   }
   if (isDataLoaded) {
@@ -86,18 +125,45 @@ function Dashboard() {
               userId={userId}
               message={user_message}
               isLoading={isLoading}
-              data={data}
+              data={mockedData}
+              api={api}
+              userApi={userApi}
             />
             <ContentGrid>
               <ChartsGrid>
                 <MainChart>
-                  <DailyActivity userId={userId} data={data} />
+                  <DailyActivity
+                    userId={userId}
+                    data={mockedData}
+                    dailyActivityApi={sessionsApi?.sessions}
+                    api={api}
+                  />
                 </MainChart>
-                <AverageSessionsChart userId={userId} data={data} />
-                <RadarActivities userId={userId} data={data} />
-                <Score userId={userId} data={data} />
+                <AverageSessionsChart
+                  userId={userId}
+                  data={mockedData}
+                  averageApi={averageApi}
+                  api={api}
+                />
+                <RadarActivities
+                  userId={userId}
+                  data={mockedData}
+                  performancesApi={performancesApi}
+                  api={api}
+                />
+                <Score
+                  userId={userId}
+                  data={mockedData}
+                  userApiScore={userApi.score}
+                  api={api}
+                />
               </ChartsGrid>
-              <Macros userId={userId} data={data.userMainData} />
+              <Macros
+                userId={userId}
+                data={mockedData.userMainData}
+                keyData={userApi?.keyData}
+                api={api}
+              />
             </ContentGrid>
           </MainContent>
         </DashboardContainer>

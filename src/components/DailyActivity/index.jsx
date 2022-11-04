@@ -30,8 +30,13 @@ import React from 'react';
  * @param   {Object}  data   all User data
  * @return {JSX.Element}
  */
-function DailyActivity({ userId, data }) {
+function DailyActivity({ userId, data, api = false, dailyActivityApi }) {
   const dailyActivity = new Activity(userId, data?.userActivities)._activities;
+  const dailyActivitiesApi = new Activity(
+    userId,
+    data?.userActivities,
+    dailyActivityApi
+  )._activitiesApi;
 
   return (
     <DailyActivityContainer>
@@ -50,7 +55,7 @@ function DailyActivity({ userId, data }) {
 
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
-          data={dailyActivity}
+          data={api ? dailyActivitiesApi : dailyActivity}
           margin={{ top: 80, right: 48, bottom: 32, left: 48 }}
           barGap={8}
           barCategoryGap="35%"
@@ -100,6 +105,7 @@ function DailyActivity({ userId, data }) {
             radius={[50, 50, 0, 0]}
           />
           <Tooltip
+            wrapperStyle={{ outlineStyle: 'none' }}
             content={<CustomTooltip />}
             cursor={{
               fill: 'rgba(0, 0, 0, 0.1)',

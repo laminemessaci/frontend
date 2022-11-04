@@ -13,14 +13,20 @@ import React from 'react';
  *
  * @return {JSX.Element}
  */
-function Macros({ userId, data }) {
+function Macros({ userId, data, api = false, keyData }) {
   // console.log(data);
   const { nutriments, values } = new User(userId, data)._keyData;
+  const { nutrimentsApi, valuesApi } = new User(userId, data, keyData)
+    ._keyDataApi;
 
   return (
     <MacroContainer>
-      {nutriments.map((nutriment, index) => (
-        <IconComponent type={nutriment} value={values[index]} key={index} />
+      {(api ? nutrimentsApi : nutriments).map((nutriment, index) => (
+        <IconComponent
+          type={nutriment}
+          value={(api ? valuesApi : values)[index]}
+          key={index}
+        />
       ))}
     </MacroContainer>
   );
@@ -29,6 +35,8 @@ function Macros({ userId, data }) {
 Macros.propTypes = {
   userId: PropTypes.string.isRequired,
   data: PropTypes.array.isRequired,
+  keyData: PropTypes.object,
+  api: PropTypes.string,
 };
 
 export default Macros;

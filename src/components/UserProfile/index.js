@@ -22,7 +22,9 @@ function UserProfile({ userId, imageSource, data, api }) {
   return (
     <UserSection>
       <UserArticle>
-        <UserLink href={`dashboard/${userId}`}>
+        <UserLink
+          href={api ? `dashboard/${userId}/${api}` : `dashboard/${userId}`}
+        >
           <UserImage src={imageSource} />
           <UserName>
             {api

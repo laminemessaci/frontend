@@ -11,10 +11,11 @@
  * @param {object} data contains all data
  */
 export class SessionsAverage {
-  constructor(userId, data) {
+  constructor(userId, data, dataApi) {
     this._userId = userId;
     this._data = data;
-    console.log('sessions  ' + data);
+    this._dataApi = dataApi?.sessions;
+    // console.log('sessions  ' + data);
   }
 
   /**
@@ -39,7 +40,19 @@ export class SessionsAverage {
       }
     });
 
-    // console.log('sessions: ', sessions);
+    return sessions;
+  }
+
+  get _sessionsApi() {
+    let sessions = [];
+    const days = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
+
+    this._dataApi.map((session) => {
+      sessions.push({
+        day: days[session.day - 1],
+        sessionLength: session.sessionLength,
+      });
+    });
 
     return sessions;
   }
