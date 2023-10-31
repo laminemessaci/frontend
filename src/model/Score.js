@@ -34,7 +34,6 @@ export class Score {
         score = element.todayScore;
       }
     });
-    //console.log('score::', score);
     return score;
   }
 
