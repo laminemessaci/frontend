@@ -4,11 +4,12 @@ import { useEffect } from 'react';
 
 import { END_POINTS } from '../../constants';
 
+
 /**
- * Hook used to extract data from SportSeeAPI to feed the dashboard.
- * @param {string} service
- * @param {string} userId
- * @returns {undefined|Object}
+ * Fetches data from the SportSee API for a given user ID.
+ *
+ * @param {string} userId - The ID of the user to fetch data for.
+ * @return {object} An object containing the fetched data and loading/error states.
  */
 export function useSportSeeApi(userId) {
   const [apiData, setData] = useState({});
@@ -16,6 +17,12 @@ export function useSportSeeApi(userId) {
   const [errorApi, setErrorApi] = useState(null);
 
   useEffect(() => {
+  /**
+   * Fetches data from multiple API endpoints and sets the results in state.
+   *
+   * @param {string} userId - The user ID used to construct the API endpoints.
+   * @return {Promise} A promise that resolves with the fetched data.
+   */
     const fetchData = async () => {
       setErrorApi('');
       axios

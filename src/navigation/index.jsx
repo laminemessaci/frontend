@@ -6,10 +6,12 @@ import Dashboard from '../screens/Dashboard/index.jsx';
 import Home from '../screens/Home/index.js';
 import Page404 from '../screens/Page404/index.jsx';
 
+
 /**
- * @component Navigation Component
+ * Renders the navigation routes for the application.
  *
- * @return  {JSX.Element} Routes
+ * @param {Object} props - The props object containing the necessary data for rendering the routes.
+ * @return {JSX.Element} The rendered navigation routes.
  */
 function Navigation(props) {
   return (

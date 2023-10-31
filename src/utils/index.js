@@ -35,12 +35,12 @@
 //   return path.join('.');
 // };
 
+
 /**
- * Formats  initial date to good user format
+ * Formats the given data object into a new array of objects with translated activity names.
  *
- * @param   {Object}  obj
- *
- * @return  {{activity: string, value: number}}    results
+ * @param {Object} obj - The data object to be formatted.
+ * @return {Array} An array of objects with translated activity names and their corresponding values.
  */
 export function formatData(obj) {
   // console.log("obj==> ", obj);
@@ -62,12 +62,12 @@ export function formatData(obj) {
 
 
 
+
 /**
- * Capitalize and translate to French
+ * Translates a given string to French.
  *
- * @param   {string}  str
- *
- * @return  {string}
+ * @param {string} str - The string to be translated.
+ * @return {string} The translated string in French.
  */
 export function translateToFr(str) {
   var performances = {
@@ -83,12 +83,12 @@ export function translateToFr(str) {
   return performances[str] || performances['default'];
 }
 
+
 /**
- * Capitalize First letter
+ * Capitalizes the first letter of a given string and converts the rest to lowercase.
  *
- * @param   {string}  str
- *
- * @return  {string}
+ * @param {string} str - The string to be capitalized.
+ * @return {string} The capitalized string.
  */
 export function capitalizesFirstLetter(str) {
   return str.charAt(0).toUpperCase() + str.substring(1).toLowerCase();
