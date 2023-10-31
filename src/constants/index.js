@@ -61,7 +61,7 @@ export const activitie_radar = {
 export const user_message =
   "Félicitations ! Vous avez explosé vos objectifs hier ! 👏";
 
-export const BASE_URL = "https://sport-api-et31.onrender.com/";
+export const BASE_URL = "https://sport-feat.onrender.com/";
 
 export const END_POINTS = (id) => {
   return [
